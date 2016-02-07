@@ -1,0 +1,69 @@
+\section{The Electrical System}
+
+The electrical system consists of two parts: the power distribution system and signals. Each will be discussed in the following sections. Wiring diagrams are provided in Appendix.
+
+\subsection{The Power Distribution System}
+
+Power to the entire system comes from the 3-prong plug running through the PVC pipe fixtures on the driver's left side of the electronics box. The 3-prong plug plugs into building power when the vehicle is in the Large Project Building and supplies power to the power strip mounted on the wall of the electronics box on the driver's left side. Alternatively, during operation, the 3-prong plug is plugged into a Honda EU2000i generator that should be mounted in the back of the vehicle. Power to the rest of the system is then drawn from that power strip. \\ \\
+%
+The entire system has 3 voltages that powers everything: 5 volts, 12 volts and 24 volts:
+\begin{enumerate}
+\item A Meanwell HRP-600-24 converts 120V AC power from the power strip to 24V DC power
+\item A Meanwell HRP-300-12 converts 120V AC power from the power strip to 12V DC power
+\item A Meanwell SB-15B-05 converts 24V DC power to 5V DC power
+\end{enumerate}
+%
+The 24V and 12V power supplies are located on the lower deck of the electronics enclosure and the 5V power supply is located on the upper deck.
+%
+\subsubsection{Fuses}
+There are 4 main fuse blocks used on the vehicle:
+\begin{enumerate}
+\item 1 Blue Sea Systems fuse block (C24) handles 24V power
+\item 2 Blue Sea Systems fuse blocks (C12 and M12) handles 12V power
+\item 1 linear fuse block handles 5V power 
+\end{enumerate}
+%
+From the lower deck, three main power busses run to the upper deck: two 24V busses and one 12V bus. One 24V bus runs to the C24 fuse block and the other 24V bus runs to the 5V power supply that converts 24V DC power to 5V DC power. The 12V bus runs to the M12 fuse block. The C12 fuse block is powered from one of the outputs on the M12 fuse block.
+%
+\subsubsection{24V}
+Five outputs on the C24 fuse block are used:
+\begin{enumerate}
+\item Signal to a 24V sensing probe
+\item LIDAR power
+\item LIDAR power
+\item Navcomm GPS power
+\item Safety light power
+\end{enumerate}
+%
+Except for the signal to the 24V sensing probe, all of the other 4 lines run to the appropriate equipment outside the electronics box. The signal to the 24V sensing probe runs to the voltage sense project box (discussed in a later subsection).
+
+\subsubsection{12V Power (C12 Fuse Block)}
+Four outputs on the C12 fuse block are used:
+\begin{enumerate}
+\item Power for the cab fans
+\item Signal to a 12V sensing probe
+\item INS power
+\item Power for ethernet switch
+\end{enumerate}
+%
+Power for the cab fans and INS power run to the appropriate equipment outside the electronics box. The signal to the 12V sensing probe runs to the voltage sense project box (discussed in a later subsection)and power to the ethernet switch runs to the netgear ethernet switch on the back corner of the electronics box on the driver's right side of the vehicle.
+
+\subsubsection{12V Power (M12 Fuse Block)}
+All six outputs on the M12 fuse block are used:
+\begin{enumerate}
+\item Right tilt unit motor power
+\item Power to the C12 fuse block
+\item Power to the linear actuators
+\item Left tilt unit motor power
+\item Box fan power
+\item Box fan power
+\end{enumerate}
+%
+The power to the C12 fuse block is obtained from the appropriate port on the M12 fuse block. The power to each of the fans mounted to the front of the electronics box that cools the electronics box is also obtained from 2 of the outputs. Power to the right and left tilt units and power then runs to the appropriate equipment outside the electronics box. Finally, the power for the linear actuators runs to an EStop relay first, then to the 
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=.08]{wholefish.jpg}
+%\caption{The current version of the robotic tuna}
+%\label{fig:wholefish}
+%\end{figure} 
+
