@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.23)  6 FEB 2016 22:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.23)  13 FEB 2016 00:09
 entering extended mode
 **D:/GatorResearch_Documentation/ElectricalSystem.tex
 (D:/GatorResearch_Documentation/ElectricalSystem.tex
@@ -14,11 +14,11 @@ ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
 ! Undefined control sequence.
-l.1 \chapter
+l.1 \section
             {The Electrical System}
 ? 
 ! Emergency stop.
-l.1 \chapter
+l.1 \section
             {The Electrical System}
 End of file on the terminal!
 

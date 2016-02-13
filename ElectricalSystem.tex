@@ -4,29 +4,52 @@ The electrical system consists of two parts: the power distribution system and s
 
 \subsection{The Power Distribution System}
 
-Power to the entire system comes from the 3-prong plug running through the PVC pipe fixtures on the driver's left side of the electronics box. The 3-prong plug plugs into building power when the vehicle is in the Large Project Building and supplies power to the power strip mounted on the wall of the electronics box on the driver's left side. Alternatively, during operation, the 3-prong plug is plugged into a Honda EU2000i generator that should be mounted in the back of the vehicle. Power to the rest of the system is then drawn from that power strip. \\ \\
+\subsubsection{Power Supplies}
+Power to the entire system comes from the 3-prong plug running through the PVC pipe fixtures on the driver's left side of the electronics box.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.1]{Photos/PowerStrip.jpg}
+\caption{The power strip on the side of the electronics box}
+\label{fig:powerstrip}
+\end{figure} 
+
+ \noindent The 3-prong plug attached to the power strip plugs into building power when the vehicle is in the Large Project Building and supplies power to the power strip mounted on the wall of the electronics box on the driver's left side. Alternatively, during operation, the 3-prong plug is plugged into a Honda EU2000i generator that should be mounted in the back of the vehicle:\\ \\
 %
-The entire system has 3 voltages that powers everything: 5 volts, 12 volts and 24 volts:
+ Power to the rest of the system is then drawn from that power strip. The devices plugged into that power strip are shown in the diagram below:\\ \\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.6]{Photos/PowerStrip_Drawing.jpg}
+\caption{Drawing of devices plugged into the power strip}
+\label{fig:powerstripdrawing}
+\end{figure} 
+
+\noindent The entire system has 3 voltages that powers everything: 5 volts, 12 volts and 24 volts:
 \begin{enumerate}
 \item A Meanwell HRP-600-24 converts 120V AC power from the power strip to 24V DC power
 \item A Meanwell HRP-300-12 converts 120V AC power from the power strip to 12V DC power
-\item A Meanwell SB-15B-05 converts 24V DC power to 5V DC power
+\item A Meanwell SB-15B-05 converts 24V DC power from the 24V DC power supply to 5V DC power
 \end{enumerate}
 %
 The 24V and 12V power supplies are located on the lower deck of the electronics enclosure and the 5V power supply is located on the upper deck.
-%
+
+\newpage 
+
 \subsubsection{Fuses}
-There are 4 main fuse blocks used on the vehicle:
+There are 4 main fuse blocks used on the vehicle to distribute power via fuses to all electronic devices on board:
 \begin{enumerate}
-\item 1 Blue Sea Systems fuse block (C24) handles 24V power
-\item 2 Blue Sea Systems fuse blocks (C12 and M12) handles 12V power
-\item 1 linear fuse block handles 5V power 
+\item 1 Blue Sea Systems fuse block (C24) handles all 24V power distribution
+\item 2 Blue Sea Systems fuse blocks (C12 and M12) handle all 12V power distribution
+\item 1 linear fuse block handles all 5V power distribution 
 \end{enumerate}
 %
 From the lower deck, three main power busses run to the upper deck: two 24V busses and one 12V bus. One 24V bus runs to the C24 fuse block and the other 24V bus runs to the 5V power supply that converts 24V DC power to 5V DC power. The 12V bus runs to the M12 fuse block. The C12 fuse block is powered from one of the outputs on the M12 fuse block.
 %
-\subsubsection{24V}
-Five outputs on the C24 fuse block are used:
+\subsubsection{24V Power Distribution}
+
+\begin{minipage}{0.6\textwidth}
+Five outputs on the C24 fuse block are used:\\
 \begin{enumerate}
 \item Signal to a 24V sensing probe
 \item LIDAR power
@@ -34,21 +57,48 @@ Five outputs on the C24 fuse block are used:
 \item Navcomm GPS power
 \item Safety light power
 \end{enumerate}
-%
-Except for the signal to the 24V sensing probe, all of the other 4 lines run to the appropriate equipment outside the electronics box. The signal to the 24V sensing probe runs to the voltage sense project box (discussed in a later subsection).
+\end{minipage} \hfill
+\begin{minipage}{0.5\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.05, angle=-90]{Photos/C24.jpg}
+\caption{\label{fig:C24} C24 Fuse Block}
+\end{figure}
+\end{minipage}
 
-\subsubsection{12V Power (C12 Fuse Block)}
-Four outputs on the C12 fuse block are used:
+\bigskip
+
+\noindent  Except for the signal to the 24V sensing probe, all of the other 4 lines run to the appropriate equipment outside the electronics box. The signal to the 24V sensing probe runs to the voltage sense project box (discussed in a later subsection).
+
+\newpage
+
+\subsubsection{12V Power Distribution (C12 Fuse Block)}
+
+\begin{minipage}{0.6\textwidth}
+Five outputs on the C12 fuse block are used:
 \begin{enumerate}
 \item Power for the cab fans
 \item Signal to a 12V sensing probe
 \item INS power
 \item Power for ethernet switch
+\item E-Stop 12V power
 \end{enumerate}
-%
-Power for the cab fans and INS power run to the appropriate equipment outside the electronics box. The signal to the 12V sensing probe runs to the voltage sense project box (discussed in a later subsection)and power to the ethernet switch runs to the netgear ethernet switch on the back corner of the electronics box on the driver's right side of the vehicle.
+\end{minipage} \hfill
+\begin{minipage}{0.5\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.06, angle=90]{Photos/C12.jpg}
+\caption{\label{fig:C12} C12 Fuse Block}
+\end{figure}
+\end{minipage}
 
-\subsubsection{12V Power (M12 Fuse Block)}
+\bigskip
+
+\noindent Power for the cab fans and INS power run to the appropriate equipment outside the electronics box. The signal to the 12V sensing probe runs to the voltage sense project box (discussed in a later subsection) and power to the ethernet switch runs to the netgear ethernet switch on the back corner of the electronics box on the driver's right side of the vehicle. The E-Stop 12V power is utilized by the E-Stop system, which will be discussed in a later section.
+
+\subsubsection{12V Power Distribution (M12 Fuse Block)}
+
+\begin{minipage}{0.6\textwidth}
 All six outputs on the M12 fuse block are used:
 \begin{enumerate}
 \item Right tilt unit motor power
@@ -58,12 +108,52 @@ All six outputs on the M12 fuse block are used:
 \item Box fan power
 \item Box fan power
 \end{enumerate}
-%
-The power to the C12 fuse block is obtained from the appropriate port on the M12 fuse block. The power to each of the fans mounted to the front of the electronics box that cools the electronics box is also obtained from 2 of the outputs. Power to the right and left tilt units and power then runs to the appropriate equipment outside the electronics box. Finally, the power for the linear actuators runs to an EStop relay first, then to the 
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[scale=.08]{wholefish.jpg}
-%\caption{The current version of the robotic tuna}
-%\label{fig:wholefish}
-%\end{figure} 
+\end{minipage} \hfill
+\begin{minipage}{0.5\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.06, angle=90]{Photos/M12.jpg}
+\caption{\label{fig:M12} M12 Fuse Block}
+\end{figure}
+\end{minipage}
 
+\bigskip
+
+\noindent The power to the C12 fuse block is obtained from the appropriate port on the M12 fuse block. The power to each of the fans mounted to the front of the electronics box that cools the electronics box is also obtained from 2 of the outputs. Power to the right and left tilt units is also drawn from the M12 fuse block outputs and power then runs to the appropriate equipment outside the electronics box. Finally, the power for the linear actuators runs to an E-Stop relay first, then connected to two fuse terminals on the linear fuse block (discussed on the next page)
+
+\subsubsection{Linear Fuse Block (Various Power Distribution)}
+
+\begin{minipage}{0.6\textwidth}
+The four lines on the linear fuse block are:
+\begin{enumerate}
+\item Fuse for motor power coming from the steering motor amplifier headed to the steering motor
+\item Fuse for the 5V DC power output from the 5V DC power supply headed to the 5V DC power terminal strip
+\item Two fuses to distribute 12V power from the E-Stop relay to the gas and brake linear actuators
+\end{enumerate}
+\end{minipage} \hfill
+\begin{minipage}{0.5\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.06]{Photos/5vblock.jpg}
+\caption{\label{fig:linear} Linear Fuse Block}
+\end{figure}
+\end{minipage}
+
+\subsubsection{5V DC Power and Ground Terminal Strips}
+
+There are two terminal strips that serve as busses for 5V DC power and ground.  The 5V DC power is used for:
+
+\begin{enumerate}
+\item Both commfronts that process serial signals from the LiDARs
+\item To steering encoder
+\item To cabin 5 volts
+\item Signal to a 5V sensing probe
+\end{enumerate}
+
+\noindent The ground terminal strip is used for:
+
+\begin{enumerate}
+\item Ground connection for the E-Stop magnet coil
+\item Ground to the 5V sensing probe
+\item Ground to the E-Stop relay
+\end{enumerate}
