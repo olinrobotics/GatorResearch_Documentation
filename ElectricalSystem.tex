@@ -157,3 +157,29 @@ There are two terminal strips that serve as busses for 5V DC power and ground.  
 \item Ground to the 5V sensing probe
 \item Ground to the E-Stop relay
 \end{enumerate}
+
+\newpage
+
+\subsubsection{Emergency Stop System}
+
+The emergency stop system is designed to mechanically cut power to the actuators in the event of an emergency. The last part of the power distribution system is the Emergency stop system. The system is relatively simple and consists of the following components:\\
+
+\begin{enumerate}
+\item 2 red mushroom-head emergency stop switches with black plastic mounting box, 1 located in the cab and one located on the outside wall of the electronics box
+\item A magnecraft 788XBXM4L magnet coil relay with 70-463-1 relay socket located on the upper deck of the electronics box
+\item The E-Stop sensing probe at the voltage sensing project box (discussed in the next section)
+\end{enumerate}
+
+\noindent The power source for the E-Stop system is a fused 12V terminal from the C12 fuse block. One branch of thsi line is then run through all the E-Stop switches. There is a second branch of this line that then runs to a relay on the upper deck of the electronics box. This relay controls power to the linear actuators and steering motor amplifier. When the E-Stops are not pressed, the line reads zero volts. When the E-Stops are pressed, the line is pulled up to 12V and that triggers the relay to open the normally-closed circuits and close the normally-open circuits, shutting down power to the linear actuators and disabling the steering motor amplifier.
+
+\subsection{Steering System}
+
+The steering system is comprised of the following components:
+
+\begin{enumerate}
+\item Potomac Electric DC motor, which is an aftermarket power steering assist motor purchased by the 2009-2010 SCOPE team
+\item Advanced Motor Controls 30A20AC analog servo drive with filter card
+\item National Instruments NI9263 chassis that sends +/- 10V control signals to the analog servo drive
+\end{enumerate}
+
+\noindent In the LabVIEW code, the steering controller code communicates with the NI9263 module and uses the NI9263 module to output control signals to the 30A20AC analog servo drive. Based on those control signals, the analog servo drive will then pass the appropriate motor voltage through the filter card before passing those signals to the Potomac Electric DC Motor mounted below the steering wheel.

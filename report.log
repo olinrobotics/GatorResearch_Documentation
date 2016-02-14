@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.23)  13 FEB 2016 02:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.23)  14 FEB 2016 00:32
 entering extended mode
 **D:/GatorResearch_Documentation/report.tex
 (D:/GatorResearch_Documentation/report.tex
@@ -184,60 +184,118 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks16
 \@floatcapt=\box27
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty"
+Package: pdfpages 2015/09/18 v0.5d Insert pages of external PDF documents (AM)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count99
+\calc@Bcount=\count100
+\calc@Adimen=\dimen109
+\calc@Bdimen=\dimen110
+\calc@Askip=\skip44
+\calc@Bskip=\skip45
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count101
+\calc@Cskip=\skip46
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
+Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+))
+\AM@pagewidth=\dimen111
+\AM@pageheight=\dimen112
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def"
+File: pppdftex.def 2015/09/18 v0.5d Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box28
+\AM@toc@title=\toks17
+\c@AM@survey=\count102
+\AM@templatesizebox=\box29
+)
 
 LaTeX Warning: Unused global option(s):
     [letter].
 
 (D:\GatorResearch_Documentation\report.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count99
-\scratchdimen=\dimen109
-\scratchbox=\box28
-\nofMPsegments=\count100
-\nofMParguments=\count101
-\everyMPshowfont=\toks17
-\MPscratchCnt=\count102
-\MPscratchDim=\dimen110
-\MPnumerator=\count103
-\makeMPintoPDFobject=\count104
-\everyMPtoPDFconversion=\toks18
+\scratchcounter=\count103
+\scratchdimen=\dimen113
+\scratchbox=\box30
+\nofMPsegments=\count104
+\nofMParguments=\count105
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count106
+\MPscratchDim=\dimen114
+\MPnumerator=\count107
+\makeMPintoPDFobject=\count108
+\everyMPtoPDFconversion=\toks19
 )
-\AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 10.
+\AtBeginShipoutBox=\box31
+Package hyperref Info: Link coloring OFF on input line 11.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count105
+\c@section@level=\count109
 )
-LaTeX Info: Redefining \ref on input line 10.
-LaTeX Info: Redefining \pageref on input line 10.
-LaTeX Info: Redefining \nameref on input line 10.
+LaTeX Info: Redefining \ref on input line 11.
+LaTeX Info: Redefining \pageref on input line 11.
+LaTeX Info: Redefining \nameref on input line 11.
 
 (D:\GatorResearch_Documentation\report.out)
 (D:\GatorResearch_Documentation\report.out)
 \@outlinefile=\write3
 
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
+Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
+)
 (D:\GatorResearch_Documentation\title.tex
-<Logos.jpg, id=39, 2304.61pt x 714.67pt>
+<Logos.jpg, id=75, 2304.61pt x 714.67pt>
 File: Logos.jpg Graphic file (type jpg)
  <use Logos.jpg>
 Package pdftex.def Info: Logos.jpg used on input line 25.
@@ -250,8 +308,394 @@ Overfull \hbox (1.77852pt too wide) in paragraph at lines 25--26
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <D:/GatorResearch_Document
-ation/Logos.jpg>]) (D:\GatorResearch_Documentation\ElectricalSystem.tex
-<Photos/PowerStrip.jpg, id=51, 4047.12pt x 2168.1pt>
+ation/Logos.jpg>]) (D:\GatorResearch_Documentation\report.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 3.
+)
+\tf@toc=\write4
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.20 \newpage
+              [1] (D:\GatorResearch_Documentation\report.lof)
+\tf@lof=\write5
+ [2]
+(D:\GatorResearch_Documentation\Preface.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 3--26
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--26
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--26
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--26
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--26
+
+ []
+
+[3] (D:\GatorResearch_Documentation\MechanicalSystem.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--7
+
+ []
+
+[4] <MechSystem.pdf, id=138, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf>
+Package pdftex.def Info: MechSystem.pdf used on input line 14.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf>
+Package pdftex.def Info: MechSystem.pdf used on input line 14.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+ <MechSystem.pdf, id=141, page=1, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 1>
+Package pdftex.def Info: MechSystem.pdf, page1 used on input line 14.
+(pdftex.def)             Requested size: 614.29349pt x 638.47833pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 1>
+Package pdftex.def Info: MechSystem.pdf, page1 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 1>
+Package pdftex.def Info: MechSystem.pdf, page1 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 1>
+Package pdftex.def Info: MechSystem.pdf, page1 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 1>
+Package pdftex.def Info: MechSystem.pdf, page1 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [5 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=171, p
+age=2, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 2>
+Package pdftex.def Info: MechSystem.pdf, page2 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 2>
+Package pdftex.def Info: MechSystem.pdf, page2 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 2>
+Package pdftex.def Info: MechSystem.pdf, page2 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [6 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=182, p
+age=3, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 3>
+Package pdftex.def Info: MechSystem.pdf, page3 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 3>
+Package pdftex.def Info: MechSystem.pdf, page3 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 3>
+Package pdftex.def Info: MechSystem.pdf, page3 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [7 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=192, p
+age=4, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 4>
+Package pdftex.def Info: MechSystem.pdf, page4 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 4>
+Package pdftex.def Info: MechSystem.pdf, page4 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 4>
+Package pdftex.def Info: MechSystem.pdf, page4 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [8 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=203, p
+age=5, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 5>
+Package pdftex.def Info: MechSystem.pdf, page5 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 5>
+Package pdftex.def Info: MechSystem.pdf, page5 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 5>
+Package pdftex.def Info: MechSystem.pdf, page5 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [9 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=213, p
+age=6, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 6>
+Package pdftex.def Info: MechSystem.pdf, page6 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 6>
+Package pdftex.def Info: MechSystem.pdf, page6 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 6>
+Package pdftex.def Info: MechSystem.pdf, page6 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [10 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=223, 
+page=7, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 7>
+Package pdftex.def Info: MechSystem.pdf, page7 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 7>
+Package pdftex.def Info: MechSystem.pdf, page7 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 7>
+Package pdftex.def Info: MechSystem.pdf, page7 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [11 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=234, 
+page=8, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 8>
+Package pdftex.def Info: MechSystem.pdf, page8 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 8>
+Package pdftex.def Info: MechSystem.pdf, page8 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 8>
+Package pdftex.def Info: MechSystem.pdf, page8 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [12 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=245, 
+page=9, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 9>
+Package pdftex.def Info: MechSystem.pdf, page9 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 9>
+Package pdftex.def Info: MechSystem.pdf, page9 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 9>
+Package pdftex.def Info: MechSystem.pdf, page9 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [13 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=255, 
+page=10, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 10>
+Package pdftex.def Info: MechSystem.pdf, page10 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 10>
+Package pdftex.def Info: MechSystem.pdf, page10 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 10>
+Package pdftex.def Info: MechSystem.pdf, page10 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [14 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=265, 
+page=11, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 11>
+Package pdftex.def Info: MechSystem.pdf, page11 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 11>
+Package pdftex.def Info: MechSystem.pdf, page11 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 11>
+Package pdftex.def Info: MechSystem.pdf, page11 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [15 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=274, 
+page=12, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 12>
+Package pdftex.def Info: MechSystem.pdf, page12 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 12>
+Package pdftex.def Info: MechSystem.pdf, page12 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 12>
+Package pdftex.def Info: MechSystem.pdf, page12 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [16 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=285, 
+page=13, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 13>
+Package pdftex.def Info: MechSystem.pdf, page13 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 13>
+Package pdftex.def Info: MechSystem.pdf, page13 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 13>
+Package pdftex.def Info: MechSystem.pdf, page13 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [17 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=296, 
+page=14, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 14>
+Package pdftex.def Info: MechSystem.pdf, page14 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 14>
+Package pdftex.def Info: MechSystem.pdf, page14 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 14>
+Package pdftex.def Info: MechSystem.pdf, page14 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [18 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=307, 
+page=15, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 15>
+Package pdftex.def Info: MechSystem.pdf, page15 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 15>
+Package pdftex.def Info: MechSystem.pdf, page15 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 15>
+Package pdftex.def Info: MechSystem.pdf, page15 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [19 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=317, 
+page=16, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 16>
+Package pdftex.def Info: MechSystem.pdf, page16 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 16>
+Package pdftex.def Info: MechSystem.pdf, page16 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 16>
+Package pdftex.def Info: MechSystem.pdf, page16 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [20 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=327, 
+page=17, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 17>
+Package pdftex.def Info: MechSystem.pdf, page17 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 17>
+Package pdftex.def Info: MechSystem.pdf, page17 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 17>
+Package pdftex.def Info: MechSystem.pdf, page17 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [21 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=337, 
+page=18, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 18>
+Package pdftex.def Info: MechSystem.pdf, page18 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 18>
+Package pdftex.def Info: MechSystem.pdf, page18 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 18>
+Package pdftex.def Info: MechSystem.pdf, page18 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [22 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=347, 
+page=19, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 19>
+Package pdftex.def Info: MechSystem.pdf, page19 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 19>
+Package pdftex.def Info: MechSystem.pdf, page19 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 19>
+Package pdftex.def Info: MechSystem.pdf, page19 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [23 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=356, 
+page=20, 614.295pt x 794.97pt>
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 20>
+Package pdftex.def Info: MechSystem.pdf, page20 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+ <use MechSystem.pdf, page 20>
+Package pdftex.def Info: MechSystem.pdf, page20 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+File: MechSystem.pdf Graphic file (type pdf)
+
+<use MechSystem.pdf, page 20>
+Package pdftex.def Info: MechSystem.pdf, page20 used on input line 14.
+(pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
+ [24 <D:/GatorResearch_Documentation/MechSystem.pdf>]) [25] (D:\GatorResearch_D
+ocumentation\ElectricalSystem.tex
+<Photos/PowerStrip.jpg, id=371, 4047.12pt x 2168.1pt>
 File: Photos/PowerStrip.jpg Graphic file (type jpg)
 
 <use Photos/PowerStrip.jpg>
@@ -277,26 +721,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--20
 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.20 
-      [1pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.1}) has been already used, duplicate ignored
+[26pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.20 
       <D:/GatorResearch_Documentation/Photos/PowerStrip.jpg>]
-<Photos/PowerStrip_Drawing.jpg, id=56, 621.07031pt x 346.29375pt>
+<Photos/PowerStrip_Drawing.jpg, id=376, 621.07031pt x 346.29375pt>
 File: Photos/PowerStrip_Drawing.jpg Graphic file (type jpg)
 
 <use Photos/PowerStrip_Drawing.jpg>
 Package pdftex.def Info: Photos/PowerStrip_Drawing.jpg used on input line 23.
 (pdftex.def)             Requested size: 372.64505pt x 207.77785pt.
- [2pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
- has been already used, duplicate ignored
+ [27pdfTeX warning (ext4): destination with the same identifier (name{figure.2}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -306,13 +745,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 60.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 60.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 60.
-<Photos/C24.jpg, id=65, 4047.12pt x 3035.34pt>
+<Photos/C24.jpg, id=384, 4047.12pt x 3035.34pt>
 File: Photos/C24.jpg Graphic file (type jpg)
  <use Photos/C24.jpg>
 Package pdftex.def Info: Photos/C24.jpg used on input line 64.
@@ -322,14 +755,14 @@ Overfull \hbox (41.61346pt too wide) in paragraph at lines 51--68
 $[]$  $[]$ 
  []
 
-[3pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) 
-has been already used, duplicate ignored
+[28pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.73 \newpage
               <D:/GatorResearch_Documentation/Photos/C24.jpg>]
-<Photos/C12.jpg, id=79, 4047.12pt x 2433.09pt>
+<Photos/C12.jpg, id=397, 4047.12pt x 2433.09pt>
 File: Photos/C12.jpg Graphic file (type jpg)
  <use Photos/C12.jpg>
 Package pdftex.def Info: Photos/C12.jpg used on input line 90.
@@ -339,7 +772,7 @@ Overfull \hbox (41.61346pt too wide) in paragraph at lines 77--94
 $[]$  $[]$ 
  []
 
-<Photos/M12.jpg, id=80, 3517.14pt x 2786.41pt>
+<Photos/M12.jpg, id=398, 3517.14pt x 2786.41pt>
 File: Photos/M12.jpg Graphic file (type jpg)
  <use Photos/M12.jpg>
 Package pdftex.def Info: Photos/M12.jpg used on input line 115.
@@ -349,14 +782,14 @@ Overfull \hbox (41.61346pt too wide) in paragraph at lines 101--119
 $[]$  $[]$ 
  []
 
-[4pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
-has been already used, duplicate ignored
+[29pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.121 
        <D:/GatorResearch_Documentation/Photos/C12.jpg>]
-<Photos/5vblock.jpg, id=91, 2228.325pt x 2180.145pt>
+<Photos/5vblock.jpg, id=408, 2228.325pt x 2180.145pt>
 File: Photos/5vblock.jpg Graphic file (type jpg)
  <use Photos/5vblock.jpg>
 Package pdftex.def Info: Photos/5vblock.jpg used on input line 137.
@@ -366,48 +799,63 @@ Overfull \hbox (41.61346pt too wide) in paragraph at lines 126--141
 $[]$  $[]$ 
  []
 
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
-has been already used, duplicate ignored
+[30pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.142 \subsubsection
                     {5V DC Power and Ground Terminal Strips} <D:/GatorResearch_
-Documentation/Photos/M12.jpg>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 18.
- [6pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
- has been already used, duplicate ignored
+Documentation/Photos/M12.jpg>] [31pdfTeX warning (ext4): destination with the s
+ame identifier (name{figure.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.18 \end{document}
-                    <D:/GatorResearch_Documentation/Photos/5vblock.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 18.
+l.161 \newpage
+               <D:/GatorResearch_Documentation/Photos/5vblock.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 165--166
+
+ []
+
+
+Overfull \hbox (4.27368pt too wide) in paragraph at lines 168--169
+[]\OT1/cmr/m/n/12 2 red mushroom-head emer-gency stop switches with black plas-
+tic mount-
+ []
+
+) [32] [33] (D:\GatorResearch_Documentation\SoftwareSystemLV.tex) [34]
+(D:\GatorResearch_Documentation\SoftwareSystemROS.tex) [35]
+(D:\GatorResearch_Documentation\SoftwareSystemOCU.tex)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 37.
+ [36]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 37.
 
 (D:\GatorResearch_Documentation\report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 18.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 18.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 37.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 37.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 4A85804343CFB53A90FBBA0CE683F3E2;765.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 18.
+(rerunfilecheck)             Checksum: 12B34F1EF32A08B700252FD232DE78AD;1376.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 37.
  ) 
 Here is how much of TeX's memory you used:
- 5120 strings out of 493921
- 76051 string characters out of 3144879
- 154450 words of memory out of 3000000
- 8337 multiletter control sequences out of 15000+200000
- 9409 words of font info for 33 fonts, out of 3000000 for 9000
+ 6427 strings out of 493921
+ 95358 string characters out of 3144879
+ 180059 words of memory out of 3000000
+ 9541 multiletter control sequences out of 15000+200000
+ 9578 words of font info for 34 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 29i,10n,28p,646b,331s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,20n,46p,733b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:
 /Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on report.pdf (7 pages, 15340348 bytes).
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on report.pdf (37 pages, 18278303 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 54 named destinations out of 1000 (max. 500000)
- 108 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 508 PDF objects out of 1000 (max. 8388607)
+ 102 named destinations out of 1000 (max. 500000)
+ 667 words of extra memory for PDF output out of 10000 (max. 10000000)
 
