@@ -1,0 +1,3 @@
+#Ignores the log and aux files from the tex compiler
+.aux
+.log
