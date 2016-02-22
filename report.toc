@@ -1,0 +1,31 @@
+\contentsline {section}{\numberline {1}Preface}{5}{section.1}
+\contentsline {section}{\numberline {2}The Mechanical System}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Preface to the Section}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}The Electronics Box}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Gas and Brake Actuation System}{7}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Steering System}{18}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Steering Limit Switches}{20}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Wheel Encoder Mount System}{22}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Generator Mount}{24}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.8}Additional Mechanical Components}{25}{subsection.2.8}
+\contentsline {section}{\numberline {3}The Electrical System}{26}{section.3}
+\contentsline {subsection}{\numberline {3.1}The Power Distribution System}{26}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Power Supplies}{26}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Overview of Fuses}{28}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}24V Power Distribution (C24 Fuse Block)}{28}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}12V Power Distribution (C12 Fuse Block)}{29}{subsubsection.3.1.4}
+\contentsline {subsubsection}{\numberline {3.1.5}12V Power Distribution (M12 Fuse Block)}{30}{subsubsection.3.1.5}
+\contentsline {subsubsection}{\numberline {3.1.6}Linear Fuse Block (Various Power Distribution)}{31}{subsubsection.3.1.6}
+\contentsline {subsubsection}{\numberline {3.1.7}Terminal Strips (5V DC Power and Ground)}{31}{subsubsection.3.1.7}
+\contentsline {subsubsection}{\numberline {3.1.8}Emergency Stop System}{32}{subsubsection.3.1.8}
+\contentsline {subsection}{\numberline {3.2}Subsystems and Signal Connections: Steering System}{32}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Subsystems and Signal Connections: Gas and Brake Actuators}{33}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Subsystems and Signal Connections: LIDAR Serial Communication}{34}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Subsystems and Signal Connections LIDAR Tilt Units}{34}{subsection.3.5}
+\contentsline {section}{\numberline {4}The Robot Software System (LabVIEW)}{35}{section.4}
+\contentsline {subsection}{\numberline {4.1}The Vehicle Co-Ordinate System}{35}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}LIDAR Point Transform}{35}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}LIDAR Co-Ordinate Definition}{36}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Constant LIDAR Transform Properties}{37}{subsubsection.4.2.2}
+\contentsline {section}{\numberline {5}The Robot Software System (ROS)}{38}{section.5}
+\contentsline {section}{\numberline {6}The OCU Software System}{39}{section.6}
