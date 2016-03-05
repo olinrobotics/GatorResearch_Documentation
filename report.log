@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.23)  23 FEB 2016 20:01
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.23)  4 MAR 2016 22:45
 entering extended mode
 **D:/GatorResearch_Documentation/report.tex
 (D:/GatorResearch_Documentation/report.tex
@@ -234,7 +234,14 @@ File: pppdftex.def 2015/09/18 v0.5d Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count102
 \AM@templatesizebox=\box29
 )
-(D:\GatorResearch_Documentation\report.aux)
+(D:\GatorResearch_Documentation\report.aux
+
+LaTeX Warning: Label `pintable' multiply defined.
+
+
+LaTeX Warning: Label `pintable' multiply defined.
+
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
@@ -249,8 +256,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count103
 \scratchdimen=\dimen113
@@ -291,7 +297,7 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
 )
 (D:\GatorResearch_Documentation\title.tex
-<Logos.jpg, id=143, 2304.61pt x 714.67pt>
+<Logos.jpg, id=147, 2304.61pt x 714.67pt>
 File: Logos.jpg Graphic file (type jpg)
  <use Logos.jpg>
 Package pdftex.def Info: Logos.jpg used on input line 25.
@@ -315,7 +321,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.33 ...sform Properties}{40}{subsubsection.5.4.2}
+l.33 ...ransform Process}{43}{subsubsection.5.4.1}
                                                    [1])
 \tf@toc=\write4
  [2]
@@ -351,7 +357,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--30
  []
 
 [5] (D:\GatorResearch_Documentation\MechanicalSystem.tex [6]
-<MechSystem.pdf, id=238, 614.295pt x 794.97pt>
+<MechSystem.pdf, id=253, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
  <use MechSystem.pdf>
 Package pdftex.def Info: MechSystem.pdf used on input line 14.
@@ -361,7 +367,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 <use MechSystem.pdf>
 Package pdftex.def Info: MechSystem.pdf used on input line 14.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
- <MechSystem.pdf, id=241, page=2, 614.295pt x 794.97pt>
+ <MechSystem.pdf, id=256, page=2, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
 <use MechSystem.pdf, page 2>
@@ -395,7 +401,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 Package pdftex.def Info: MechSystem.pdf used on input line 15.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<MechSystem.pdf, id=274, page=3, 614.295pt x 794.97pt>
+<MechSystem.pdf, id=289, page=3, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
 <use MechSystem.pdf, page 3>
@@ -419,7 +425,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 <use MechSystem.pdf, page 3>
 Package pdftex.def Info: MechSystem.pdf, page3 used on input line 15.
 (pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
- [8 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=286, p
+ [8 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=301, p
 age=4, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
@@ -435,7 +441,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 <use MechSystem.pdf, page 4>
 Package pdftex.def Info: MechSystem.pdf, page4 used on input line 15.
 (pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
- [9 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=297, p
+ [9 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=312, p
 age=5, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
@@ -451,7 +457,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 <use MechSystem.pdf, page 5>
 Package pdftex.def Info: MechSystem.pdf, page5 used on input line 15.
 (pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
- [10 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=307, 
+ [10 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=322, 
 page=6, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
@@ -467,7 +473,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 <use MechSystem.pdf, page 6>
 Package pdftex.def Info: MechSystem.pdf, page6 used on input line 15.
 (pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
- [11 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=317, 
+ [11 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=332, 
 page=7, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
@@ -483,7 +489,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 <use MechSystem.pdf, page 7>
 Package pdftex.def Info: MechSystem.pdf, page7 used on input line 15.
 (pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
- [12 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=329, 
+ [12 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=344, 
 page=8, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
@@ -499,7 +505,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 <use MechSystem.pdf, page 8>
 Package pdftex.def Info: MechSystem.pdf, page8 used on input line 15.
 (pdftex.def)             Requested size: 552.86038pt x 574.6266pt.
- [13 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=339, 
+ [13 <D:/GatorResearch_Documentation/MechSystem.pdf>] <MechSystem.pdf, id=354, 
 page=9, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
@@ -525,7 +531,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 Package pdftex.def Info: MechSystem.pdf used on input line 16.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<MechSystem.pdf, id=351, page=10, 614.295pt x 794.97pt>
+<MechSystem.pdf, id=366, page=10, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
 <use MechSystem.pdf, page 10>
@@ -559,7 +565,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 Package pdftex.def Info: MechSystem.pdf used on input line 17.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<MechSystem.pdf, id=365, page=12, 614.295pt x 794.97pt>
+<MechSystem.pdf, id=380, page=12, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
 <use MechSystem.pdf, page 12>
@@ -593,7 +599,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 Package pdftex.def Info: MechSystem.pdf used on input line 18.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<MechSystem.pdf, id=380, page=13, 614.295pt x 794.97pt>
+<MechSystem.pdf, id=395, page=13, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
 <use MechSystem.pdf, page 13>
@@ -627,7 +633,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 Package pdftex.def Info: MechSystem.pdf used on input line 36.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<MechSystem.pdf, id=403, page=16, 614.295pt x 794.97pt>
+<MechSystem.pdf, id=418, page=16, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
 <use MechSystem.pdf, page 16>
@@ -662,7 +668,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 Package pdftex.def Info: MechSystem.pdf used on input line 38.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<MechSystem.pdf, id=421, page=17, 614.295pt x 794.97pt>
+<MechSystem.pdf, id=436, page=17, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
 <use MechSystem.pdf, page 17>
@@ -729,7 +735,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 Package pdftex.def Info: MechSystem.pdf used on input line 48.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<MechSystem.pdf, id=451, page=15, 614.295pt x 794.97pt>
+<MechSystem.pdf, id=466, page=15, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
 <use MechSystem.pdf, page 15>
@@ -763,7 +769,7 @@ File: MechSystem.pdf Graphic file (type pdf)
 Package pdftex.def Info: MechSystem.pdf used on input line 50.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<MechSystem.pdf, id=466, page=20, 614.295pt x 794.97pt>
+<MechSystem.pdf, id=481, page=20, 614.295pt x 794.97pt>
 File: MechSystem.pdf Graphic file (type pdf)
 
 <use MechSystem.pdf, page 20>
@@ -803,7 +809,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 54--32
  []
 
 [26] (D:\GatorResearch_Documentation\ElectricalSystem.tex
-<Photos/PowerStrip.jpg, id=482, 4047.12pt x 2168.1pt>
+<Photos/PowerStrip.jpg, id=497, 4047.12pt x 2168.1pt>
 File: Photos/PowerStrip.jpg Graphic file (type jpg)
 
 <use Photos/PowerStrip.jpg>
@@ -836,7 +842,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--20
                                                   \fi \fi 
 l.20 
       <D:/GatorResearch_Documentation/Photos/PowerStrip.jpg>]
-<Photos/PowerStrip_Drawing.jpg, id=487, 621.07031pt x 346.29375pt>
+<Photos/PowerStrip_Drawing.jpg, id=502, 621.07031pt x 346.29375pt>
 File: Photos/PowerStrip_Drawing.jpg Graphic file (type jpg)
 
 <use Photos/PowerStrip_Drawing.jpg>
@@ -853,7 +859,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
-<Photos/C24.jpg, id=495, 4047.12pt x 3035.34pt>
+<Photos/C24.jpg, id=510, 4047.12pt x 3035.34pt>
 File: Photos/C24.jpg Graphic file (type jpg)
  <use Photos/C24.jpg>
 Package pdftex.def Info: Photos/C24.jpg used on input line 64.
@@ -870,7 +876,7 @@ $[]$  $[]$
                                                   \fi \fi 
 l.73 \newpage
               <D:/GatorResearch_Documentation/Photos/C24.jpg>]
-<Photos/C12.jpg, id=508, 4047.12pt x 2433.09pt>
+<Photos/C12.jpg, id=523, 4047.12pt x 2433.09pt>
 File: Photos/C12.jpg Graphic file (type jpg)
  <use Photos/C12.jpg>
 Package pdftex.def Info: Photos/C12.jpg used on input line 90.
@@ -880,7 +886,7 @@ Overfull \hbox (41.61346pt too wide) in paragraph at lines 77--94
 $[]$  $[]$ 
  []
 
-<Photos/M12.jpg, id=509, 3517.14pt x 2786.41pt>
+<Photos/M12.jpg, id=524, 3517.14pt x 2786.41pt>
 File: Photos/M12.jpg Graphic file (type jpg)
  <use Photos/M12.jpg>
 Package pdftex.def Info: Photos/M12.jpg used on input line 115.
@@ -897,7 +903,7 @@ $[]$  $[]$
                                                   \fi \fi 
 l.121 
        <D:/GatorResearch_Documentation/Photos/C12.jpg>]
-<Photos/5vblock.jpg, id=520, 2228.325pt x 2180.145pt>
+<Photos/5vblock.jpg, id=535, 2228.325pt x 2180.145pt>
 File: Photos/5vblock.jpg Graphic file (type jpg)
  <use Photos/5vblock.jpg>
 Package pdftex.def Info: Photos/5vblock.jpg used on input line 137.
@@ -946,7 +952,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 199--202
 
  []
 
-[34]) [35] [36]
+[34] [35] [36]
+<Photos/Encoder_6PinCircularPinDiagram.jpg, id=591, 619.31375pt x 626.34pt>
+File: Photos/Encoder_6PinCircularPinDiagram.jpg Graphic file (type jpg)
+
+<use Photos/Encoder_6PinCircularPinDiagram.jpg>
+Package pdftex.def Info: Photos/Encoder_6PinCircularPinDiagram.jpg used on inpu
+t line 238.
+(pdftex.def)             Requested size: 185.79555pt x 187.90344pt.
+ [37pdfTeX warning (ext4): destination with the same identifier (name{figure.7}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.259 \newpage
+              pdfTeX warning (ext4): destination with the same identifier (name
+{table.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.259 \newpage
+               <D:/GatorResearch_Documentation/Photos/Encoder_6PinCircularPinDi
+agram.jpg>]
+<Photos/Encoder_9PinSerialPinDiagram.jpg, id=596, 452.69125pt x 782.925pt>
+File: Photos/Encoder_9PinSerialPinDiagram.jpg Graphic file (type jpg)
+
+<use Photos/Encoder_9PinSerialPinDiagram.jpg>
+Package pdftex.def Info: Photos/Encoder_9PinSerialPinDiagram.jpg used on input 
+line 265.
+(pdftex.def)             Requested size: 135.80841pt x 234.8793pt.
+ [38pdfTeX warning (ext4): destination with the same identifier (name{figure.8}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.289 \newpage
+              pdfTeX warning (ext4): destination with the same identifier (name
+{table.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.289 \newpage
+               <D:/GatorResearch_Documentation/Photos/Encoder_9PinSerialPinDiag
+ram.jpg>]) [39pdfTeX warning (ext4): destination with the same identifier (name
+{table.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.34 \newpage
+             ]
 Underfull \hbox (badness 10000) in paragraph at lines 37--42
 
  []
@@ -956,21 +1010,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--42
 
  []
 
-[37] (D:\GatorResearch_Documentation\SoftwareSystemLV.tex
-<Photos/veh_coord.png, id=580, 451.6875pt x 356.2911pt>
+[40] (D:\GatorResearch_Documentation\SoftwareSystemLV.tex
+<Photos/veh_coord.png, id=609, 451.6875pt x 356.2911pt>
 File: Photos/veh_coord.png Graphic file (type png)
 
 <use Photos/veh_coord.png>
 Package pdftex.def Info: Photos/veh_coord.png used on input line 17.
 (pdftex.def)             Requested size: 316.17908pt x 249.40205pt.
- [38pdfTeX warning (ext4): destination with the same identifier (name{figure.7}
+ [41pdfTeX warning (ext4): destination with the same identifier (name{figure.9}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.23 \newpage
               <D:/GatorResearch_Documentation/Photos/veh_coord.png (PNG copy)>]
-<Photos/LIDAR_AngleDef.png, id=588, 237.88875pt x 160.34906pt>
+<Photos/LIDAR_AngleDef.png, id=617, 237.88875pt x 160.34906pt>
 File: Photos/LIDAR_AngleDef.png Graphic file (type png)
 
 <use Photos/LIDAR_AngleDef.png>
@@ -980,8 +1034,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 42.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 42.
- [39pdfTeX warning (ext4): destination with the same identifier (name{figure.8}
-) has been already used, duplicate ignored
+ [42pdfTeX warning (ext4): destination with the same identifier (name{figure.10
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -991,24 +1045,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--53
 
  []
 
-) [40] (D:\GatorResearch_Documentation\SoftwareSystemROS.tex) [41]
+) [43] (D:\GatorResearch_Documentation\SoftwareSystemROS.tex) [44]
 (D:\GatorResearch_Documentation\SoftwareSystemOCU.tex)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 51.
- [42]
+ [45]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 51.
 
 (D:\GatorResearch_Documentation\report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 51.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 51.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: B381F447AA4533C10D279DD827AE9B24;2811.
+(rerunfilecheck)             Checksum: 940B8365766FF15E3774FDD7E17F4324;2888.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 51.
  ) 
 Here is how much of TeX's memory you used:
- 6491 strings out of 493921
- 96083 string characters out of 3144879
- 181150 words of memory out of 3000000
- 9552 multiletter control sequences out of 15000+200000
+ 6516 strings out of 493921
+ 96663 string characters out of 3144879
+ 181435 words of memory out of 3000000
+ 9566 multiletter control sequences out of 15000+200000
  9578 words of font info for 34 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,20n,46p,1414b,460s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1022,9 +1080,9 @@ Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program File
 s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x
 86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (43 pages, 18447899 bytes).
+Output written on report.pdf (46 pages, 19745224 bytes).
 PDF statistics:
- 679 PDF objects out of 1000 (max. 8388607)
- 149 named destinations out of 1000 (max. 500000)
- 914 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 710 PDF objects out of 1000 (max. 8388607)
+ 158 named destinations out of 1000 (max. 500000)
+ 932 words of extra memory for PDF output out of 10000 (max. 10000000)
 

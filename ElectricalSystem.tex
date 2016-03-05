@@ -226,3 +226,79 @@ The tilt unit system that nods the LIDARs consists of the following components:
 \subsection{Cabin Wire Routing}
 
 There are four areas where cables are routed into the cabin of the Gator. The first two pass-throughs are previously existing holes, located behind the driver-side seat and designed for 3/8? conduit. Conduits for communications with the cabin e-stop button and linear actuator are routed through these holes, and follow pre-existing conduits running along the left roll bar of the Curtis cab, with their last zip-tie fastening in the center of the hood, under the dashboard. The power cables for actuators and steering motor are passed through another pre-existing hole, this one located behind the battery compartment, behind the driver?s side seat and directly above the FWD crankshaft located on the passenger side of the vehicle. The final pass-though is located between the two seats, a half inch above the seat belt mounting brackets. It is not pre-existing, and is drilled to be 1.45? wide, to allow for a VGA cable for the monitor to be passed through. Conduits for monitor power and signal, as well as USB and IEEE 1394 connectivity and signal from the Cherry magnetic sensors (used as end-stops for steering and located in the driver side firewall) in the cabin are passed through this hole.
+
+\newpage
+
+\subsection{Encoder Signal Connections}
+
+The encoder signal line, including the pull-up resistor breakout boards, all obey the following pin diagrams. On the connectors closer to the encoder, circular connectors are used. When looking at the connector from the inside of the tilt unit housing, the following pin arrangement is observed:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.3]{Photos/Encoder_6PinCircularPinDiagram.jpg}
+\caption{\label{fig:6pincircular} Pin Diagram for 6 Pin Circular Connector for Tilt Unit Encoders}
+\end{figure}
+
+\noindent The pins correspond to the following on the encoder:
+
+\begin{table}[H]
+\centering
+\caption{Pin Designations for Circular Encoder Signal Connector}
+\label{pintable}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{A} & A+  \\ \hline
+\textbf{B} & -   \\ \hline
+\textbf{C} & GND \\ \hline
+\textbf{D} & +5V \\ \hline
+\textbf{E} & Z+  \\ \hline
+\textbf{F} & B+  \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\noindent On the other end of the encoder signal cable is a 9-pin serial connector with the following pin arrangement and designation:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.3]{Photos/Encoder_9PinSerialPinDiagram.jpg}
+\caption{\label{fig:6pinserial} Pin Diagram for 6 Pin Serial Connector for Tilt Unit Encoders}
+\end{figure}
+
+\noindent The pins correspond to the following on the encoder:
+
+\begin{table}[H]
+\centering
+\caption{Pin Designations for Serial Encoder Signal Connector}
+\label{pintable}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{1} & A+  \\ \hline
+\textbf{2} & B+  \\ \hline
+\textbf{3} & Z+ \\ \hline
+\textbf{4} & - \\ \hline
+\textbf{5} & +5V  \\ \hline
+\textbf{6} & -  \\ \hline
+\textbf{7} & -  \\ \hline
+\textbf{8} & -  \\ \hline
+\textbf{9} & GND  \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+\centering
+\caption{Pin Designations for Serial Encoder Signal Connector}
+\label{pintable}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{1} & A  \\ \hline
+\textbf{2} & F  \\ \hline
+\textbf{3} & E \\ \hline
+\textbf{5} & D\\ \hline
+\textbf{6} & B \\ \hline
+\textbf{9} & C \\ \hline
+\end{tabular}
+\end{table}
