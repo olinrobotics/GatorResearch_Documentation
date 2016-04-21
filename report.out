@@ -25,12 +25,14 @@
 \BOOKMARK [2][-]{subsection.3.6}{Cabin Wire Routing}{section.3}% 25
 \BOOKMARK [2][-]{subsection.3.7}{Encoder Signal Connections}{section.3}% 26
 \BOOKMARK [1][-]{section.4}{Overview of the Software Architecture}{}% 27
-\BOOKMARK [1][-]{section.5}{The Robot Software System \(LabVIEW\)}{}% 28
-\BOOKMARK [2][-]{subsection.5.1}{Software Overview}{section.5}% 29
-\BOOKMARK [2][-]{subsection.5.2}{The Vehicle Co-Ordinate System}{section.5}% 30
-\BOOKMARK [2][-]{subsection.5.3}{LIDAR Co-Ordinate Definition}{section.5}% 31
-\BOOKMARK [2][-]{subsection.5.4}{LIDAR Point Transform}{section.5}% 32
-\BOOKMARK [3][-]{subsubsection.5.4.1}{Overview of the Transform Process}{subsection.5.4}% 33
-\BOOKMARK [3][-]{subsubsection.5.4.2}{Constant LIDAR Transform Properties}{subsection.5.4}% 34
-\BOOKMARK [1][-]{section.6}{The Robot Software System \(ROS\)}{}% 35
-\BOOKMARK [1][-]{section.7}{The OCU Software System}{}% 36
+\BOOKMARK [1][-]{section.5}{Software System Definitions}{}% 28
+\BOOKMARK [2][-]{subsection.5.1}{The Vehicle Co-Ordinate System}{section.5}% 29
+\BOOKMARK [2][-]{subsection.5.2}{LIDAR Co-Ordinate Definition}{section.5}% 30
+\BOOKMARK [1][-]{section.6}{The Robot Software System \(LabVIEW\)}{}% 31
+\BOOKMARK [2][-]{subsection.6.1}{The FPGA Hindbrain}{section.6}% 32
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Sensing Loop}{subsection.6.1}% 33
+\BOOKMARK [2][-]{subsection.6.2}{LIDAR Point Transform}{section.6}% 34
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Overview of the Transform Process}{subsection.6.2}% 35
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Constant LIDAR Transform Properties}{subsection.6.2}% 36
+\BOOKMARK [1][-]{section.7}{The Robot Software System \(ROS\)}{}% 37
+\BOOKMARK [1][-]{section.8}{The OCU Software System}{}% 38

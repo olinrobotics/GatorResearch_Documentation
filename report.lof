@@ -6,5 +6,7 @@
 \contentsline {figure}{\numberline {6}{\ignorespaces Linear Fuse Block}}{32}{figure.6}
 \contentsline {figure}{\numberline {7}{\ignorespaces Pin Diagram for 6 Pin Circular Connector for Tilt Unit Encoders}}{37}{figure.7}
 \contentsline {figure}{\numberline {8}{\ignorespaces Pin Diagram for 6 Pin Serial Connector for Tilt Unit Encoders}}{38}{figure.8}
-\contentsline {figure}{\numberline {9}{\ignorespaces Vehicle Co-ordinate System Definition}}{41}{figure.9}
-\contentsline {figure}{\numberline {10}{\ignorespaces Sick LMS290 Angle Definition}}{42}{figure.10}
+\contentsline {figure}{\numberline {9}{\ignorespaces Vehicle Co-ordinate System Definition}}{42}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Sick LMS290 Angle Definition}}{43}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Hindbrain top-level VI block diagram with subsections annotated}}{44}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Sensing loop in the hindbrain VI}}{46}{figure.12}

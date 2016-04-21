@@ -34,14 +34,15 @@
 \newpage
 
 \section{Overview of the Software Architecture}
-The software that runs the Gator includes a stack running on Robot Operating System (ROS) on the Intel Nuc computer in Linux and a second stack running in LabVIEW on the windows 7 rack computer. The LabVIEW code is designed to be minimally intrusive to any intelligent operation. It's sole purpose is to keep the vehicle safe and prevent the vehicle from becoming damaged. The ROS code, on the otherhand, is designed to have most of the intelligence required for performing missions. This segregation of responsibility therefore facilitates different teams with different mission requirements, allowing any team to run their code on the vehicle with minimal additional set up time. As long as the ROS-LabVIEW interface is obeyed, the software architecture will support swapping out the ROS-based code at any time and the vehicle should still run.\\ \\
+The software that runs the Gator includes a stack running on Robot Operating System (ROS) on the Intel Nuc computer in Linux and a second stack running in LabVIEW on the windows 7 rack computer. The LabVIEW code is designed to be minimally intrusive to any intelligent operation. It's sole purpose is to keep the vehicle safe and prevent the vehicle from sustaining damage. The ROS code, on the otherhand, is designed to have most of the intelligence required for performing missions. This segregation of responsibility therefore facilitates different teams with different mission requirements, allowing any team to run their code on the vehicle with minimal additional set up time. As long as the ROS-LabVIEW interface is obeyed, the software architecture will support swapping out the ROS-based code at any time and the vehicle should still run.\\ \\
 %
 \noindent The software on the vehicle is broken up into three main parts: Forebrain, Midbrain and Hindbrain. Each part has a different function and operating speed. The hindbrain has the fastest operating speed and is used for low-level control of the control surfaces on the vehicle such as the gas and brake pedals. As such, the hindbrain is implemented on a National Instruments NI FPGA. The midbrain has two parts: one handling LabVIEW internal processing and another handling passing of sensor and vehicle information from LabVIEW to ROS. Finally, the forebrain is entirely ROS-based and handles all the high-level processing tasks such as path planning and intelligent obstacle avoidance. \\ \\
 %
 In the upcoming sections, the various components of the software stack will be discussed in full detail.
 
 \newpage
-
+\input{SoftwareSystemGeneral}
+\newpage
 \input{SoftwareSystemLV}
 \newpage
 \input{SoftwareSystemROS}

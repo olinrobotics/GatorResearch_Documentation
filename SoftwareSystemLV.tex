@@ -1,47 +1,64 @@
 \section{The Robot Software System (LabVIEW)}
 
-\subsection{Software Overview}
-
-\subsection{The Vehicle Co-Ordinate System}
-
-The vehicle co-ordinate system is defined using the standard used on most ground vehicles: with the positive x direction straight ahead. In order to maintain a right-handed co-ordinate system, the three axes of the vehicle co-ordinate system are therefore defined as:
-
-\begin{enumerate}
-\item The positive X axis is pointed to the front of the vehicle
-\item The positive Y axis is pointed to the left of the vehicle
-\item The positive Z axis is pointed upward
-\end{enumerate}
+\subsection{The FPGA Hindbrain}
+As discussed in the software overview section, the Hindbrain of the vehicle is implemented on a LabVIEW FPGA in order to ensure that control loops and essential data processing is done at the fastest possible speeds to reduce system latency even when the vehicle travels at higher speeds. \\ \\
+%
+The front panel and block diagram of the top-level hindbrain VI is shown below:
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=.7]{Photos/veh_coord.png}
-\caption{Vehicle Co-ordinate System Definition}
-\label{fig:veh_coord}
+\includegraphics[scale=0.55]{Photos/hindbrainblock_annotated.png}
+\caption{Hindbrain top-level VI block diagram with subsections annotated}
+\label{fig:hindbrainblock}
 \end{figure} 
-
 
 \newpage
 
-\noindent The respective rotations in the vehicle co-ordinate system are therefore defined as:
+\noindent As can be seen in Figure \ref{fig:hindbrainblock}, the main subsections of the FPGA hindbrain are:
 
 \begin{enumerate}
-\item Positive rotation about the X axis (Positive Roll) is roll toward the driver's right side of the vehicle
-\item Positive rotation about the Y axis (Positive Pitch) is pitch downward toward the ground
-\item Positive rotation about the Z axis (Positive Yaw) is yaw toward the driver's left side (counter clockwise yaw) of the vehicle
+\item Sensing Loop
+\item Acting Loop
+\item Tilt Unit Drive Status Monitors
+\item LiDAR Reading
+\item Supporting Hardware Control
+\item Relay Control
 \end{enumerate}
 
-\subsection{LIDAR Co-Ordinate Definition}
-By default, the Sick LMS290 LIDARs are programmed to transmit distance measurements in millimeters (mm) and angles in degrees with 0 degrees on the right and 180 degrees on the left as shown in the image below:
+\subsubsection{Sensing Loop}
+
+The sensing loop of the FPGA hindbrain essentially passes status information and data from other parts of the FPGA hindbrain code up to the front panel so that the real-time code can access these variables. The block diagram for the sensing loop shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below: 
+
+\newpage
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=.9]{Photos/LIDAR_AngleDef.png}
-\caption[Sick LMS290 Angle Definition]{Sick LMS290 Angle Definition \protect \footnotemark}
-\label{fig:sick_angledef}
+\includegraphics[scale=1.5]{Photos/sensingloop.png}
+\caption{Sensing loop in the hindbrain VI}
+\label{fig:sensingloop}
 \end{figure} 
-\footnotetext{ Information obtained from Quick Manula for LMS Communication Setup}
 
-\newpage
+\noindent As shown in Figure \ref{fig:sensingloop}, the sensing loop is responsible for exposing front panel elements for the following pieces of data to the real-time code:
+
+\begin{enumerate}
+\item Left LiDAR Encoder Position: A debugging indicator that shows the encoder position of the left LiDAR in units of encoder ticks
+\item Left Tilt Unit State: A cluster containing an indicator for whether the index had been found, whether the tilt unit has been told to be in initialize mode, whether there is a position error in the tilt unit and the encoder position.
+\item Right Tilt Unit State: The same cluster as the left tilt unit state cluster used for the right tilt unit
+\item Left LiDAR Position: Another debug indicator that shows the position of the left tilt unit in degrees after the encoder ticks have been converted to degrees
+\item Negative Steer Endstop: A boolean that represents whether the negative steer angle endstop has been triggered
+\item Positive Steer Endstop: A boolean that represents whether the positive steer angle endstop has been triggered
+\item Estop Engaged: A boolean that represents whether either of the physical estop buttons have been triggered
+\item Odometer (meters): The distance travelled by the vehicle since the code started running
+\item Throttle state: A cluster containing indicators for the gas and brake pedal voltage being sent to the linear actuators for the gas and brake respectively
+\item DriveState: A cluster indicating the driving state of the vehicle including the steering wheel angle in degrees, the velocity in miles per  hour and the boolean that represents whether the vehicle should apply the brakes
+\item SenseHeartBeat: An indicator that simply provides a blinking light that confirms the while loop is running 
+\end{enumerate}
+
+\subsubsection{Acting Loop}
+
+The acting loop of the FPGA hindbrain essentially performs the opposite function of the sensing loop: to provide indicators for the real-time code to pass commands or instructions down to the FPGA code. The block diagram for the acting loop shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below:
+
+
 
 \subsection{LIDAR Point Transform}
 
