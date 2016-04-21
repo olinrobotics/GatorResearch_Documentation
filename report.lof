@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \contentsline {figure}{\numberline {1}{\ignorespaces The power strip on the side of the electronics box}}{27}{figure.1}
 \contentsline {figure}{\numberline {2}{\ignorespaces Drawing of devices plugged into the power strip}}{28}{figure.2}
 \contentsline {figure}{\numberline {3}{\ignorespaces C24 Fuse Block}}{29}{figure.3}
@@ -10,3 +11,15 @@
 \contentsline {figure}{\numberline {10}{\ignorespaces Sick LMS290 Angle Definition}}{43}{figure.10}
 \contentsline {figure}{\numberline {11}{\ignorespaces Hindbrain top-level VI block diagram with subsections annotated}}{44}{figure.11}
 \contentsline {figure}{\numberline {12}{\ignorespaces Sensing loop in the hindbrain VI}}{46}{figure.12}
+=======
+\contentsline {figure}{\numberline {1}{\ignorespaces The power strip on the side of the electronics box}}{26}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Drawing of devices plugged into the power strip}}{27}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces C24 Fuse Block}}{28}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces C12 Fuse Block}}{29}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces M12 Fuse Block}}{30}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Linear Fuse Block}}{31}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Pin Diagram for 6 Pin Circular Connector for Tilt Unit Encoders}}{36}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Pin Diagram for 6 Pin Serial Connector for Tilt Unit Encoders}}{37}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Vehicle Co-ordinate System Definition}}{40}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Sick LMS290 Angle Definition}}{41}{figure.10}
+>>>>>>> 4e23b07b0c34cd4b9aa48b17d977da9b4130af68

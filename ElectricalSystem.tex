@@ -192,7 +192,7 @@ The 30A20AC analog servo driver and filter card are powered directly from the po
 The gas and brake pedal system consists of the following components:
 
 \begin{enumerate}
-\item 2 PQ Controls linear actuators, one for the brake ane and one for the gas pedal
+\item 2 PQ Controls linear actuators, one for the brake and and one for the gas pedal
 \item National Instruments NI9263 chassis that sends analog control signals to the appropriate linear actuators
 \end{enumerate}
 
@@ -302,3 +302,16 @@ The encoder signal line, including the pull-up resistor breakout boards, all obe
 \textbf{9} & C \\ \hline
 \end{tabular}
 \end{table}
+
+\subsection{Networking}
+\noindent The vehicle carries the following networking equipment on board in the electronics box:\\
+\begin{enumerate}
+\item Ubiquiti Networks Rocket M900 radio
+\item 2 HGV-906U 900MHz omnidirectional 3dBi antennas, one on the front and one on the rear of the vehicle
+\item Two coaxial antenna cables, one 25ft cable running to the front antenna and a 15ft antenna running to the rear antenna
+\item Ubiquiti Networks PoE power adapter for the Rocket radio
+\end{enumerate}
+
+\noindent The two omnidirectional antennas are each connected to one antenna connector on the Rocket radio. Having two antennas, one on the front and one on the rear of the vehicle maximizes the connectivity and reception signal strength between the vehicle and the other end of the ethernet bridge. The rocket radio is connected via a cat6e ethernet cable to a Ubiquiti Networks PoE power adapter that ships with the radio. A second cat6e ethernet cable then runs from the PoE power adapter to the network switch on board the vehicle.\\ \\
+%
+\noindent The vehicle can be connected to the Intelligent Vehicle Field Network using the above equipment. See the Intelligent Vehicle Field Network User Manual for further details.

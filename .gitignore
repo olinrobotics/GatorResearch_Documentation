@@ -1,3 +1,9 @@
 #Ignores the log and aux files from the tex compiler
-.aux
-.log
+*.aux
+*.log
+*.toc
+report.pdf
+*.gz
+*.aux
+*.lof
+*.out
