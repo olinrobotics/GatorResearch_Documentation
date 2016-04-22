@@ -58,7 +58,72 @@ The sensing loop of the FPGA hindbrain essentially passes status information and
 
 The acting loop of the FPGA hindbrain essentially performs the opposite function of the sensing loop: to provide indicators for the real-time code to pass commands or instructions down to the FPGA code. The block diagram for the acting loop shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below:
 
+\newpage
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1.5]{Photos/actloop.png}
+\caption{Acting loop in the hindbrain VI}
+\label{fig:actloop}
+\end{figure}
+
+\noindent As shown in Figure \ref{fig:actloop}, the acting loop is responsible for providing front panel elements for the real-time code to send the following commands to the FPGA code:
+
+\begin{enumerate}
+\item Left Tilt Unit Command: A cluster that contains indicators for whether the tilt unit should be in initialize mode, the position setpoint of the tilt unit in degrees, the current output when the tilt unit is in initialize mode and a reset position boolean that indicates whether the position of the tilt units should be reset to zero.
+\item Right Tilt Unit Command: The same cluster as Left Tilt Unit Command, but for the right tilt unit
+\item Left Tilt Unit Settings: A cluster that contains the controller settings for the left tilt unit including the position proportional, integral and derivative (PID) gains, Current PI gains and the current limit
+\item Right Tilt Unit Settings: The same settings cluster as the Left Tilt Unit Settings for the right tilt unit
+\item Drive Command: A cluster containing the desired wheel angle in degrees, the desired velocity in miles per hour and a boolean to command the vehicle to apply the brakes
+\item Steering Controller Settings: A cluster containing the controller settings for the steering control including the PID gains, upper and lower voltage limits, upper and lower encoder limits, PID to motor conversion constant, motor deadband high and low threshold, a reset position boolean for resetting the steer motor position and two other booleans to tell the vehicle whether to allow positive and negative steering voltages or not.
+\item Throttle Controller Settings: Cluster containg the throttle controller settings for the gas and brake controllers including the PID gains for the gas pedal controller, voltage offset that indicates the neutral position voltage, position reset and PID reset boolean, maximum and minimum brake voltage, maximum and minimum gas pedal voltage and the speed of the throttle control loop. 
+\end{enumerate}
+
+\subsubsection{Tilt Unit Drive Status Monitors}
+The tilt unit drive status monitors essentially provide inputs and outputs that allow the real-time code to command the NI9505 motor control modules and receive information on the status of the modules. The block diagram for the tilt unit drive status monitors shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below
+
+\newpage
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1.2]{Photos/tudrivestat.png}
+\caption{Tilt unit drive status monitors in the hindbrain VI}
+\label{fig:tudrivestat}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{tudrivestat}, the left and right drive status loops are basically identical to each other except for the module assignments since the left drive status monitor addresses the NI9505 module for the left tilt unit and the right drive status monitor addresses the other NI9505 module. \\ \\
+%
+Each drive status monitor loop contains a method for enabling the drive, disabling the drive and monitoring the presence of a power supply (vsup Present), whether the drive has a drive fault (Drive Fault), determining whether the drive is enabled or disabled (Drive Status) and whether the drive is overheating (Over Temperature Fault). By default, the NI9505 modules will be disabled when the vehicle is first powered up and so the drive will need to be enabled in software during initialization. 
+
+\subsubsection{LiDAR Reading}
+
+Although LiDAR reading shows up on the front panel of the Hindbrain top-level VI as one subVI, the process of reading data from the two Sick LMS291 LiDARs really involves several different subVIs to perform the various tasks. In summary, the process of reading data from the LiDARs involves:
+
+\begin{enumerate}
+\item Initializing the LiDARs
+\item Read the raw data from the LiDARs
+\item Parse and transform the LiDAR data into the vehicle's coordinate system
+\end{enumerate}
+
+\noindent On the hindbrain top-level VI, the block diagram for reading the LiDARs shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=2]{Photos/lidarread.png}
+\caption{LiDAR Reading SubVI in the hindbrain VI}
+\label{fig:lidarread}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:lidarread}, the lidar reading VI takes the offsets for the left (Leonardo) and right (Raphael) LiDARs that provide the translations and rotations that are needed to transform the LiDAR data in the last step of the LiDAR reading process.\\ \\
+%
+The block diagram of the LiDAR reading VI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/readlidarblock.png}
+\caption{Block diagram for the Lidar Reading VI}
+\label{fig:readlidarblock}
+\end{figure}
 
 \subsection{LIDAR Point Transform}
 
