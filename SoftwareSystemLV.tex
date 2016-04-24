@@ -1,20 +1,20 @@
-\section{The Robot Software System (LabVIEW)}
+\chapter{The Robot Software System (LabVIEW)}
 
-\subsection{The FPGA Hindbrain}
-As discussed in the software overview section, the Hindbrain of the vehicle is implemented on a LabVIEW FPGA in order to ensure that control loops and essential data processing is done at the fastest possible speeds to reduce system latency even when the vehicle travels at higher speeds. \\ \\
+\section{The FPGA Hindbrain}
+As discussed in the software overview chapter, the Hindbrain of the vehicle is implemented on a LabVIEW FPGA in order to ensure that control loops and essential data processing is done at the fastest possible speeds to reduce system latency even when the vehicle travels at higher speeds. \\ \\
 %
 The front panel and block diagram of the top-level hindbrain VI is shown below:
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.55]{Photos/hindbrainblock_annotated.png}
-\caption{Hindbrain top-level VI block diagram with subsections annotated}
+\caption{Hindbrain top-level VI block diagram with subchapters annotated}
 \label{fig:hindbrainblock}
 \end{figure} 
 
 \newpage
 
-\noindent As can be seen in Figure \ref{fig:hindbrainblock}, the main subsections of the FPGA hindbrain are:
+\noindent As can be seen in Figure \ref{fig:hindbrainblock}, the main subchapters of the FPGA hindbrain are:
 
 \begin{enumerate}
 \item Sensing Loop
@@ -25,7 +25,7 @@ The front panel and block diagram of the top-level hindbrain VI is shown below:
 \item Relay Control
 \end{enumerate}
 
-\subsubsection{Sensing Loop}
+\subsection{Sensing Loop}
 
 The sensing loop of the FPGA hindbrain essentially passes status information and data from other parts of the FPGA hindbrain code up to the front panel so that the real-time code can access these variables. The block diagram for the sensing loop shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below: 
 
@@ -54,7 +54,7 @@ The sensing loop of the FPGA hindbrain essentially passes status information and
 \item SenseHeartBeat: An indicator that simply provides a blinking light that confirms the while loop is running 
 \end{enumerate}
 
-\subsubsection{Acting Loop}
+\subsection{Acting Loop}
 
 The acting loop of the FPGA hindbrain essentially performs the opposite function of the sensing loop: to provide indicators for the real-time code to pass commands or instructions down to the FPGA code. The block diagram for the acting loop shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below:
 
@@ -79,7 +79,7 @@ The acting loop of the FPGA hindbrain essentially performs the opposite function
 \item Throttle Controller Settings: Cluster containg the throttle controller settings for the gas and brake controllers including the PID gains for the gas pedal controller, voltage offset that indicates the neutral position voltage, position reset and PID reset boolean, maximum and minimum brake voltage, maximum and minimum gas pedal voltage and the speed of the throttle control loop. 
 \end{enumerate}
 
-\subsubsection{Tilt Unit Drive Status Monitors}
+\subsection{Tilt Unit Drive Status Monitors}
 The tilt unit drive status monitors essentially provide inputs and outputs that allow the real-time code to command the NI9505 motor control modules and receive information on the status of the modules. The block diagram for the tilt unit drive status monitors shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below
 
 \newpage
@@ -95,7 +95,7 @@ The tilt unit drive status monitors essentially provide inputs and outputs that 
 %
 Each drive status monitor loop contains a method for enabling the drive, disabling the drive and monitoring the presence of a power supply (vsup Present), whether the drive has a drive fault (Drive Fault), determining whether the drive is enabled or disabled (Drive Status) and whether the drive is overheating (Over Temperature Fault). By default, the NI9505 modules will be disabled when the vehicle is first powered up and so the drive will need to be enabled in software during initialization. 
 
-\subsubsection{LiDAR Reading}
+\subsection{LiDAR Reading}
 
 Although LiDAR reading shows up on the front panel of the Hindbrain top-level VI as one subVI, the process of reading data from the two Sick LMS291 LiDARs really involves several different subVIs to perform the various tasks. In summary, the process of reading data from the LiDARs involves:
 
@@ -125,13 +125,110 @@ The block diagram of the LiDAR reading VI is shown below:
 \label{fig:readlidarblock}
 \end{figure}
 
-\subsection{LIDAR Point Transform}
+\noindent As can be seen in Figure \ref{fig:readlidarblock}, the LiDAR reading VI consists of a flat sequence with three parts:
+
+\begin{enumerate}
+\item The first part is an FPGA I/O method node that sets the the input and output lines
+\item The second part contains a VI for the left and right LiDAR that sends the commands specified in the LiDAR communication protocol to tell the LiDAR to send data continuously at 25Hz
+\item The third part contains two subVIs: a serial read/write VI that writes the required commands to the LiDAR and receives the LiDAR data back and a transformer VI that transforms the LiDAR data coordinate system from the LiDAR's local coordinate system to the vehicle's coordinate system.
+\end{enumerate}
+
+\subsection{LiDAR Serial Read/Write}
+
+The block diagram for the LiDAR serial read/write VI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/readlidar_block.png}
+\caption{Block diagram for the Lidar Reading VI}
+\label{fig:readlidar_block}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:readlidar_block}, the VI is essentially a wrapper for the actual FPGA read/write functions that allows the code to reuse the same read/write functions while being able to assign the inputs and outputs to the appropriate LiDARs (either left or right). The VI takes either the left (Leonardo) or right (Raphael) LiDAR name as input and assigns the following variables to the write function:
+
+\begin{enumerate}
+\item LIDARLeonardoWriteFIFO: A First In First Out (FIFO) queue that queues the LiDAR commands to be sent to the LiDAR 
+\item Chassis1/Mod1/DIO3: The DIO chanel from which LiDAR data is transmitted
+\item 543478: The baud rate for LiDAR communication
+\item 8: Data bits for the LiDAR
+\item None: Parity for the LiDAR
+\item  1.0: Stop bits
+\item True boolean: Reverse Polarity command for the LiDAR
+\end{enumerate}
+
+\noindent The read function is then assigned the following variables:
+
+\begin{enumerate}
+\item LeoPos: A FIFO queue that queues the lidar position data to be read by the transformer VIs
+\item Chassis1/Mod1/DIO5: The DIO channel from which LiDAR data is received
+\item LIDARLeonardoReadFIFO: THe FIFO queue that queues the received LiDAR data
+\item 543478: The baud rate for LiDAR communication
+\item 8: Data bits for the LiDAR
+\item None: Parity for the LiDAR
+\item  1.0: Stop bits
+\item True boolean: Reverse Polarity command for the LiDAR
+\end{enumerate}
+
+\noindent These variables are then passed down to the actual serial write and read functions as shown below:
+
+\newpage
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/readwriteblocks.png}
+\caption{Block diagram for the VI providing the actual read/write functions}
+\label{fig:readwriteblocks}
+\end{figure}
+
+\noindent The serial write VI is a stock serial write VI provided by LabVIEW for the LiDARs that has been modified to include a while loop around the entire serial write sequence for the LiDARs. Therefore, for brevity in this report, the write VI will not be explained in detail. However, for convenience, the documentation for the serial write VI is shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/writedocs.png}
+\caption{Documentation for the serial write function}
+\label{fig:writedocs}
+\end{figure}
+
+\newpage
+
+\noindent The block diagram for the serial read VI, then, is shown in the diagram below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Photos/serialreadblock.png}
+\caption{Block diagram for the serial read function}
+\label{fig:serialreadblock}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:serialreadblock}, after setting the baud rate, the VI executes a series of steps each time throug the while loop to receive the bits that make up the LiDAR data that is received:
+
+\begin{enumerate}
+\item Wait for the start bit of the data
+\item Read data
+\item Read stop bit
+\end{enumerate}
+
+\noindent For brevity, this report is not going to discuss the code that waits for the start bit or the code that reads the stop bit. When zoomed in, the read data chapter of the code is as follows:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.85]{Photos/readdatasection.png}
+\caption{Block diagram for the chapter that reads the LiDAR data bits}
+\label{fig:readdatachapter}
+\end{figure}
+
+\newpage
+
+\noindent As can be seen in Figure \ref{fig:readdatachapter}, the data reading code essentially reads each bit as a boolean and adds it to the array. Once the for loop has been through all the bits in the mesage, it converts it to a number and adds the number to the read FIFO queue that queues up the LiDAR reading to be read by the transforming code. At the same time, code in parallel reads either the left or right encoder position (depending on whether Raphael or Leonardo is selected) and and appends the encoder tick count to a separate position FIFO queue to be read by the transformer code.
+
+\subsection{LiDAR Data Transform}
+Referring back to Figure \ref{fig:readlidarblock}, after the LiDAR read/write functions, the next step in processing the LiDAR data is to transform it from the local LiDAR coordinate system to the vehicle coordinate system. 
 
 \subsubsection{Overview of the Transform Process}
 
 The data returned by the Sick LMS290 LIDARs is in the co-ordinate frame of the LIDARs by virtue of the way in which the LIDARs take readings. In order to do useful work with the LIDAR data, the LIDAR data has to be transformed to make it iwth reference to the vehicle co-ordinate system. \\ \\
 %
-\noindent The transform process has two parts:
+\noindent The transform process has three parts:
 
 \begin{enumerate}
 \item Convert each scan from polar co-ordinates to cartesian co-ordinates

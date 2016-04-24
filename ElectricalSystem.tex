@@ -1,10 +1,10 @@
-\section{The Electrical System}
+\chapter{The Electrical System}
 
-The electrical system consists of two parts: the power distribution system and signals. Each will be discussed in the following sections. Wiring diagrams are provided in Appendix.
+The electrical system consists of two parts: the power distribution system and signals. Each will be discussed in the following chapters. Wiring diagrams are provided in Appendix.
 
-\subsection{The Power Distribution System}
+\section{The Power Distribution System}
 
-\subsubsection{Power Supplies}
+\subsection{Power Supplies}
 Power to the entire system comes from the 3-prong plug running through the PVC pipe fixtures on the driver's left side of the electronics box.
 
 \begin{figure}[h!]
@@ -36,7 +36,7 @@ The 24V and 12V power supplies are located on the lower deck of the electronics 
 
 \newpage 
 
-\subsubsection{Overview of Fuses}
+\subsection{Overview of Fuses}
 There are 4 main fuse blocks used on the vehicle to distribute power via fuses to all electronic devices on board:
 \begin{enumerate}
 \item 1 Blue Sea Systems fuse block (C24) handles all 24V power distribution
@@ -46,7 +46,7 @@ There are 4 main fuse blocks used on the vehicle to distribute power via fuses t
 %
 From the lower deck, three main power busses run to the upper deck: two 24V busses and one 12V bus. One 24V bus runs to the C24 fuse block and the other 24V bus runs to the 5V power supply that converts 24V DC power to 5V DC power. The 12V bus runs to the M12 fuse block. The C12 fuse block is powered from one of the outputs on the M12 fuse block.
 %
-\subsubsection{24V Power Distribution (C24 Fuse Block)}
+\subsection{24V Power Distribution (C24 Fuse Block)}
 
 \begin{minipage}{0.6\textwidth}
 Five outputs on the C24 fuse block are used:\\
@@ -68,11 +68,11 @@ Five outputs on the C24 fuse block are used:\\
 
 \bigskip
 
-\noindent  Except for the signal to the 24V sensing probe, all of the other 4 lines run to the appropriate equipment outside the electronics box. The signal to the 24V sensing probe runs to the voltage sense project box (discussed in a later subsection).
+\noindent  Except for the signal to the 24V sensing probe, all of the other 4 lines run to the appropriate equipment outside the electronics box. The signal to the 24V sensing probe runs to the voltage sense project box (discussed in a later subchapter).
 
 \newpage
 
-\subsubsection{12V Power Distribution (C12 Fuse Block)}
+\subsection{12V Power Distribution (C12 Fuse Block)}
 
 \begin{minipage}{0.6\textwidth}
 Five outputs on the C12 fuse block are used:
@@ -94,9 +94,9 @@ Five outputs on the C12 fuse block are used:
 
 \bigskip
 
-\noindent Power for the cab fans and INS power run to the appropriate equipment outside the electronics box. The signal to the 12V sensing probe runs to the voltage sense project box (discussed in a later subsection) and power to the ethernet switch runs to the netgear ethernet switch on the back corner of the electronics box on the driver's right side of the vehicle. The E-Stop 12V power is utilized by the E-Stop system, which will be discussed in a later section.
+\noindent Power for the cab fans and INS power run to the appropriate equipment outside the electronics box. The signal to the 12V sensing probe runs to the voltage sense project box (discussed in a later subchapter) and power to the ethernet switch runs to the netgear ethernet switch on the back corner of the electronics box on the driver's right side of the vehicle. The E-Stop 12V power is utilized by the E-Stop system, which will be discussed in a later chapter.
 
-\subsubsection{12V Power Distribution (M12 Fuse Block)}
+\subsection{12V Power Distribution (M12 Fuse Block)}
 
 \begin{minipage}{0.6\textwidth}
 All six outputs on the M12 fuse block are used:
@@ -121,7 +121,7 @@ All six outputs on the M12 fuse block are used:
 
 \noindent The power to the C12 fuse block is obtained from the appropriate port on the M12 fuse block. The power to each of the fans mounted to the front of the electronics box that cools the electronics box is also obtained from 2 of the outputs. Power to the right and left tilt units is also drawn from the M12 fuse block outputs and power then runs to the appropriate equipment outside the electronics box. Finally, the power for the linear actuators runs to an E-Stop relay first, then connected to two fuse terminals on the linear fuse block (discussed on the next page)
 
-\subsubsection{Linear Fuse Block (Various Power Distribution)}
+\subsection{Linear Fuse Block (Various Power Distribution)}
 
 \begin{minipage}{0.6\textwidth}
 The four lines on the linear fuse block are:
@@ -139,7 +139,7 @@ The four lines on the linear fuse block are:
 \end{figure}
 \end{minipage}
 
-\subsubsection{Terminal Strips (5V DC Power and Ground)}
+\subsection{Terminal Strips (5V DC Power and Ground)}
 
 There are two terminal strips that serve as busses for 5V DC power and ground.  The 5V DC power is used for:
 
@@ -160,19 +160,19 @@ There are two terminal strips that serve as busses for 5V DC power and ground.  
 
 \newpage
 
-\subsubsection{Emergency Stop System}
+\subsection{Emergency Stop System}
 
 The emergency stop system is designed to mechanically cut power to the actuators in the event of an emergency. The last part of the power distribution system is the Emergency stop system. The system is relatively simple and consists of the following components:\\
 
 \begin{enumerate}
 \item 2 red mushroom-head emergency stop switches with black plastic mounting box, 1 located in the cab and one located on the outside wall of the electronics box
 \item A magnecraft 788XBXM4L magnet coil relay with 70-463-1 relay socket located on the upper deck of the electronics box
-\item The E-Stop sensing probe at the voltage sensing project box (discussed in the next section)
+\item The E-Stop sensing probe at the voltage sensing project box (discussed in the next chapter)
 \end{enumerate}
 
 \noindent The power source for the E-Stop system is a fused 12V terminal from the C12 fuse block. One branch of thsi line is then run through all the E-Stop switches. There is a second branch of this line that then runs to a relay on the upper deck of the electronics box. This relay controls power to the linear actuators and steering motor amplifier. When the E-Stops are not pressed, the line reads zero volts. When the E-Stops are pressed, the line is pulled up to 12V and that triggers the relay to open the normally-closed circuits and close the normally-open circuits, shutting down power to the linear actuators and disabling the steering motor amplifier.
 
-\subsection{Subsystems and Signal Connections: Steering System}
+\section{Subsystems and Signal Connections: Steering System}
 
 The steering system is comprised of the following components:
 
@@ -187,7 +187,7 @@ The 30A20AC analog servo driver and filter card are powered directly from the po
 %
 \noindent The 30A20AC analog servo driver takes PWM inputs and puts out motor voltage to the steering motor. In the LabVIEW FPGA code, the steering controller code communicates with the NI9263 module and uses the NI9263 module to output PWM control signals to the 30A20AC analog servo drive. Based on those PWM signals, the 30A20AC analog servo drive will then pass the appropriate motor voltage through the filter card before passing those signals to the Potomac Electric DC Motor mounted below the steering wheel. The steering encoder signals are read by the NI9411 module.
 
-\subsection{Subsystems and Signal Connections: Gas and Brake Actuators}
+\section{Subsystems and Signal Connections: Gas and Brake Actuators}
 
 The gas and brake pedal system consists of the following components:
 
@@ -200,7 +200,7 @@ The linear actuators share a common 12V power line that originates from the M12 
 %
 \noindent The linear actuators accept anywhere between 1 - 4 volts and voltage corresponds linearly to position. Given that the linear actuators both have 3 inch strokes, the conversion should be 1 volt per inch of stroke. The voltage that controls the linear actuators is provided by the NI9263 chassis that is controlled by the FPGA code. 
 
-\subsection{Subsystems and Signal Connections: LIDAR Serial Communication}
+\section{Subsystems and Signal Connections: LIDAR Serial Communication}
 
 Serial communication with the left and right LIDARs on the front of the vehicle involves the following components:
 
@@ -212,7 +212,7 @@ Serial communication with the left and right LIDARs on the front of the vehicle 
 
 Each LIDAR receives power from a terminal on the C24 fuse block. The CommFront serial converters are needed in order to convert the RS485 serial signal from the LIDARs to an RS232 signal that the NI chassis can interprete. After the CommFront serial converters, the signals are both fed into the NI9401 chassis to be read by the FPGA code.
 
-\subsection {Subsystems and Signal Connections LIDAR Tilt Units}
+\section {Subsystems and Signal Connections LIDAR Tilt Units}
 
 The tilt unit system that nods the LIDARs consists of the following components:
 
@@ -223,13 +223,13 @@ The tilt unit system that nods the LIDARs consists of the following components:
 
 \noindent Unlike the steering system, the tilt unit system is driven entirely from the NI9505 motor controller modules. The modules themselves receive power from two sources: motor power for each module originates from a terminal on the C12 fuse block and connected to the input V+ and V- terminals on each module. The power for the controller electronics is received from the chassis itself. Each NI9505 motor controller module then drives its associated Bodine Electric motor by putting out power on the M+ and M- terminals. Each NI9505 motor controller module also handles the encoders for its associated tilt unit. The NI9505 motor controller module uses 5 pins on the serial connector on the module. 2 of the pins provide power and ground for each encoder and the other three pins handle the A, B and index outputs of the encoder. NEEDS SIGNAL DESCRIPTION?
 
-\subsection{Cabin Wire Routing}
+\section{Cabin Wire Routing}
 
 There are four areas where cables are routed into the cabin of the Gator. The first two pass-throughs are previously existing holes, located behind the driver-side seat and designed for 3/8? conduit. Conduits for communications with the cabin e-stop button and linear actuator are routed through these holes, and follow pre-existing conduits running along the left roll bar of the Curtis cab, with their last zip-tie fastening in the center of the hood, under the dashboard. The power cables for actuators and steering motor are passed through another pre-existing hole, this one located behind the battery compartment, behind the driver?s side seat and directly above the FWD crankshaft located on the passenger side of the vehicle. The final pass-though is located between the two seats, a half inch above the seat belt mounting brackets. It is not pre-existing, and is drilled to be 1.45? wide, to allow for a VGA cable for the monitor to be passed through. Conduits for monitor power and signal, as well as USB and IEEE 1394 connectivity and signal from the Cherry magnetic sensors (used as end-stops for steering and located in the driver side firewall) in the cabin are passed through this hole.
 
 \newpage
 
-\subsection{Encoder Signal Connections}
+\section{Encoder Signal Connections}
 
 The encoder signal line, including the pull-up resistor breakout boards, all obey the following pin diagrams. On the connectors closer to the encoder, circular connectors are used. When looking at the connector from the inside of the tilt unit housing, the following pin arrangement is observed:
 
@@ -303,7 +303,7 @@ The encoder signal line, including the pull-up resistor breakout boards, all obe
 \end{tabular}
 \end{table}
 
-\subsection{Networking}
+\section{Networking}
 \noindent The vehicle carries the following networking equipment on board in the electronics box:\\
 \begin{enumerate}
 \item Ubiquiti Networks Rocket M900 radio
