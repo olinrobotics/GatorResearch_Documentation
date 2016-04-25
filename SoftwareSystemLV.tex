@@ -219,22 +219,89 @@ The block diagram for the LiDAR serial read/write VI is shown below:
 
 \newpage
 
-\noindent As can be seen in Figure \ref{fig:readdatachapter}, the data reading code essentially reads each bit as a boolean and adds it to the array. Once the for loop has been through all the bits in the mesage, it converts it to a number and adds the number to the read FIFO queue that queues up the LiDAR reading to be read by the transforming code. At the same time, code in parallel reads either the left or right encoder position (depending on whether Raphael or Leonardo is selected) and and appends the encoder tick count to a separate position FIFO queue to be read by the transformer code.
+\noindent As can be seen in Figure \ref{fig:readdatachapter}, the data reading code essentially reads each bit as a boolean and adds it to the array. Once the for loop has been through all the bits in the mesage, it converts the data and adds it to the read FIFO queue that queues up the LiDAR reading to be read by the transforming code. At the same time, code in parallel reads either the left or right encoder position (depending on whether Raphael or Leonardo is selected) and and appends the encoder tick count to a separate position FIFO queue to be read by the transformer code.
 
 \subsection{LiDAR Data Transform}
-Referring back to Figure \ref{fig:readlidarblock}, after the LiDAR read/write functions, the next step in processing the LiDAR data is to transform it from the local LiDAR coordinate system to the vehicle coordinate system. 
+After the LiDAR read/write functions, the next step in processing the LiDAR data is to transform it from the local LiDAR coordinate system to the vehicle coordinate system. 
 
-\subsubsection{Overview of the Transform Process}
+\subsubsection{LiDAR Parse Transform and Send VI}
+Referring back to Figure \ref{fig:readlidarblock}, the block on the far right is the VI that parses the LiDAR data, transforms it and then sends it over a FIFO queue up to the real-time layer. The block diagram for this VI is shown below:
 
-The data returned by the Sick LMS290 LIDARs is in the co-ordinate frame of the LIDARs by virtue of the way in which the LIDARs take readings. In order to do useful work with the LIDAR data, the LIDAR data has to be transformed to make it iwth reference to the vehicle co-ordinate system. \\ \\
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{Photos/lidartransformandsend.png}
+\caption{Block diagram for the Parse Transform and Send VI}
+\label{fig:parseandsend}
+\end{figure}
+
+\noindent As shown in Figure \ref{fig:parseadsend}, the transform and send VI runs a while loop that is constantly processing LiDAR data coming from the FIFO queues that was written to those queues by the LiDAR serial read/write VIs. Data from the upper FIFO queue (the LiDAR data read from the LiDAR) is passed through a LiDAR data parser that parses each piece of data, parses the checksum and other additional data in the LiDAR data, including the distance reading and the scan number. The scan number is sent up to the real-time layer and the distance reading is then sent to the next subfunction in the parse transform and send VI. \\ \\
 %
-\noindent The transform process has three parts:
+The data from the lower FIFO queue (the position of the LiDAR in encoder ticks), then, is passed through a function that converts the encoder ticks to LiDAR position in degrees. That LiDAR position data is then passed to the next part of the transform code as the y-axis rotation (pitch).
+
+\subsubsection{LiDAR to Robot Transform: Overview}
+As shown in Figure \ref{fig:parseadsend}, the next step in the transform process is the transform itself. The data returned by the Sick LMS290 LIDARs is in the co-ordinate frame of the LIDARs by virtue of the way in which the LIDARs take readings. In order to do useful work with the LIDAR data, the LIDAR data has to be transformed to make it iwth reference to the vehicle co-ordinate system.
+
+\subsubsection{Constant LIDAR Transform Properties}
+Based on the design and placement of the LIDAR mounts, the following properties of the LIDAR transform are applied to make the transform:
 
 \begin{enumerate}
+\item For the left side LiDAR, the constant transforms are:
+\begin{enumerate}
+\item X translation: 2000mm
+\item Y translation: 450mm
+\item Z translation: 1000mm
+\item Z rotation (yaw): 45 degrees
+\end{enumerate}
+\item For the right side LiDAR, the constant transforms are:
+\begin{enumerate}
+\item X translation: 2000mm
+\item Y translation: -450mm
+\item Z translation: 1000mm
+\item Z rotation (yaw): -45 degrees
+\end{enumerate}
+\end{enumerate}
+
+\noindent The observant reader will note that the Y rotation (pitch) of the LiDARs is nto a constant property and depends on the encoder tick count. This will be explained in more detail in the later sections. 
+
+\subsubsection{The LiDAR Transform VI}
+
+The block diagram for the LiDAR transform VI is shown below:
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{Photos/transformvi.png}
+\caption{Block diagram for the LiDAR transform VI}
+\label{fig:transformvi}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:transformvi}, the transform process has four parts:
+
+\begin{enumerate}
+\item Flip the scan angle over to account for the LiDAR being mounted up-side-down and place 0 degrees in the center of the scan (i.e. such that 0 is in the center of the scan, 90 degress is on the right and -90 degrees is on the left 
 \item Convert each scan from polar co-ordinates to cartesian co-ordinates
 \item Rotate the coordinate frames such that the frame local to the LIDAR is in the same orientation as the vehicle co-ordinates
 \item Translate the coordinate frames such that the frame local to the LIDAR is translated to line up with the vehicle co-ordinate system
 \end{enumerate}
 
-\subsubsection{Constant LIDAR Transform Properties}
-Based on the design and placement of the LIDAR mounts, the following properties of the LIDAR transform to t
+\noindent Within the timed while loop in Figure \ref{fig:transformvi}, some simple arithmetic is used to adjust the scan angles such that the center of the scan has a scan angle of zero degrees with positive to the right of center in the LiDAR's mounted position and negative to the left of center.\\ \\
+%
+The next subVI converts the LiDAR scan data from polar coordinates (i.e. scan angle and measured distance) to cartesian (i.e. the coordinate of the point with an X, Y and Z component). The block diagram is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{Photos/pol2cart.png}
+\caption{Block diagram for the polar to cartesian transformer VI}
+\label{fig:pol2cart}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:pol2cart}, the polar to cartesian transform is a standard implementation of how one would convert an angle and distance to an X and Y coordinate. For clarity, the following diagram demonstrates how this transform is done:
+
+\newpage
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{Photos/pol2cart_diag.png}
+\caption{Diagram of the polar to cartesian transform}
+\label{fig:pol2cart_diag}
+\end{figure}
+
+\noindent As per the diagram in Figure \ref{fig:pol2cart_diag}, the polar coordinates are transformed to cartesian coordinates usign simple trigonometry: The X coordinate is obtained by multiplying the distance measurement by cos(scan angle). The Y coordinate is obtained by multiplying the distance measurement by sin(scan angle). These calculations are exactly what are shown in Figure \ref{fig:pol2cart}.
