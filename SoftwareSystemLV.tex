@@ -282,7 +282,20 @@ The block diagram for the LiDAR transform VI is shown below:
 \item Translate the coordinate frames such that the frame local to the LIDAR is translated to line up with the vehicle co-ordinate system
 \end{enumerate}
 
-\noindent Within the timed while loop in Figure \ref{fig:transformvi}, some simple arithmetic is used to adjust the scan angles such that the center of the scan has a scan angle of zero degrees with positive to the right of center in the LiDAR's mounted position and negative to the left of center.\\ \\
+\noindent The rotations are necessary to align the local LiDAR coordinate axes with the vehicle coordinate axes. This is illustrated in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{Photos/lidarrobotaxes.png}
+\caption{Diagram showing the LiDAR local axes (in the center of the LiDAR) and the vehicle axes (on the ground below the rear axle of the vehicle); X is red, Y is green, Z is blue}
+\label{fig:lidarrobotaxes}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:lidarrobotaxes}, the local coordinate system of the LiDAR is rotated relative to the coordinate system of the vehicle by a yaw of 45 degrees and a pitch that is measured by the encoders on the tilt units. \\ \\
+%
+\noindent Within the timed while loop in Figure \ref{fig:transformvi}, some simple arithmetic is used to adjust the scan angles such that the center of the scan has a scan angle of zero degrees with positive to the left of center in the LiDAR's mounted position and negative to the right of center. Refer to Figure \ref{fig:sick_angledef} to help figure out the angle definition\\ \\
+%
+The very last addition block of the code within the timed while loop also adds the 45 degree yaw of the 
 %
 The next subVI converts the LiDAR scan data from polar coordinates (i.e. scan angle and measured distance) to cartesian (i.e. the coordinate of the point with an X, Y and Z component). The block diagram is shown below:
 
@@ -295,8 +308,6 @@ The next subVI converts the LiDAR scan data from polar coordinates (i.e. scan an
 
 \noindent As can be seen in Figure \ref{fig:pol2cart}, the polar to cartesian transform is a standard implementation of how one would convert an angle and distance to an X and Y coordinate. For clarity, the following diagram demonstrates how this transform is done:
 
-\newpage
-
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.3]{Photos/pol2cart_diag.png}
@@ -304,4 +315,17 @@ The next subVI converts the LiDAR scan data from polar coordinates (i.e. scan an
 \label{fig:pol2cart_diag}
 \end{figure}
 
-\noindent As per the diagram in Figure \ref{fig:pol2cart_diag}, the polar coordinates are transformed to cartesian coordinates usign simple trigonometry: The X coordinate is obtained by multiplying the distance measurement by cos(scan angle). The Y coordinate is obtained by multiplying the distance measurement by sin(scan angle). These calculations are exactly what are shown in Figure \ref{fig:pol2cart}.
+\noindent As per the diagram in Figure \ref{fig:pol2cart_diag}, the polar coordinates are transformed to cartesian coordinates usign simple trigonometry: The X coordinate is obtained by multiplying the distance measurement by cos(scan angle). The Y coordinate is obtained by multiplying the distance measurement by sin(scan angle). These calculations are exactly what are shown in the block diagram in Figure \ref{fig:pol2cart}.\\ \\
+%
+Returning to Figure \ref{fig:transformvi}, after the polar to cartesian conversion,
+%
+The block diagram of the VI performing the rotation transformation of the LiDAR measurements from the LiDAR local coordinates to the vehicle coordinates is shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.6]{Photos/rotationblock.png}
+\caption{Block diagram for the VI performing the rotation transform}
+\label{fig:rotationblock}
+\end{figure}
+
+\noindent In thi scase, the As can be seen in Figure \ref{fig:rotationblock}, 
