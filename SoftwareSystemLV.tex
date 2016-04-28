@@ -1,5 +1,7 @@
 \chapter{The Robot Software System (LabVIEW)}
 
+In this chapter, the LabVIEW portion of the software will be discussed. Do note that there will be some features of the software such as timed while loops that will seem strange at first glance and the reason for the use of those features will not be written in this chapter. It is likely that such features are used as part of good LabVIEW FPGA programming practice and such practices will be documented in an Appendix at the end of this report. So, do remember to look at that section to fully understand the use of features such as timed while loops.
+
 \section{The FPGA Hindbrain}
 As discussed in the software overview chapter, the Hindbrain of the vehicle is implemented on a LabVIEW FPGA in order to ensure that control loops and essential data processing is done at the fastest possible speeds to reduce system latency even when the vehicle travels at higher speeds. \\ \\
 %
@@ -28,8 +30,6 @@ The front panel and block diagram of the top-level hindbrain VI is shown below:
 \subsection{Sensing Loop}
 
 The sensing loop of the FPGA hindbrain essentially passes status information and data from other parts of the FPGA hindbrain code up to the front panel so that the real-time code can access these variables. The block diagram for the sensing loop shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below: 
-
-\newpage
 
 \begin{figure}[h!]
 \centering
@@ -80,7 +80,7 @@ The acting loop of the FPGA hindbrain essentially performs the opposite function
 \end{enumerate}
 
 \subsection{Tilt Unit Drive Status Monitors}
-The tilt unit drive status monitors essentially provide inputs and outputs that allow the real-time code to command the NI9505 motor control modules and receive information on the status of the modules. The block diagram for the tilt unit drive status monitors shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below
+The tilt unit drive status monitors essentially provide inputs and outputs that allow the real-time code to command the NI9505 motor control modules and receive information on the status of the modules. The block diagram for the tilt unit drive status monitors shown in Figure \ref{fig:hindbrainblock} is shown zoomed in below:
 
 \newpage
 
@@ -91,7 +91,7 @@ The tilt unit drive status monitors essentially provide inputs and outputs that 
 \label{fig:tudrivestat}
 \end{figure}
 
-\noindent As can be seen in Figure \ref{tudrivestat}, the left and right drive status loops are basically identical to each other except for the module assignments since the left drive status monitor addresses the NI9505 module for the left tilt unit and the right drive status monitor addresses the other NI9505 module. \\ \\
+\noindent As can be seen in Figure \ref{fig:tudrivestat}, the left and right drive status loops are basically identical to each other except for the module assignments since the left drive status monitor addresses the NI9505 module for the left tilt unit and the right drive status monitor addresses the other NI9505 module. \\ \\
 %
 Each drive status monitor loop contains a method for enabling the drive, disabling the drive and monitoring the presence of a power supply (vsup Present), whether the drive has a drive fault (Drive Fault), determining whether the drive is enabled or disabled (Drive Status) and whether the drive is overheating (Over Temperature Fault). By default, the NI9505 modules will be disabled when the vehicle is first powered up and so the drive will need to be enabled in software during initialization. 
 
@@ -234,7 +234,7 @@ Referring back to Figure \ref{fig:readlidarblock}, the block on the far right is
 \label{fig:parseandsend}
 \end{figure}
 
-\noindent As shown in Figure \ref{fig:parseadsend}, the transform and send VI runs a while loop that is constantly processing LiDAR data coming from the FIFO queues that was written to those queues by the LiDAR serial read/write VIs. Data from the upper FIFO queue (the LiDAR data read from the LiDAR) is passed through a LiDAR data parser that parses each piece of data, parses the checksum and other additional data in the LiDAR data, including the distance reading and the scan number. The scan number is sent up to the real-time layer and the distance reading is then sent to the next subfunction in the parse transform and send VI. \\ \\
+\noindent As shown in Figure \ref{fig:parseandsend}, the transform and send VI runs a while loop that is constantly processing LiDAR data coming from the FIFO queues that was written to those queues by the LiDAR serial read/write VIs. Data from the upper FIFO queue (the LiDAR data read from the LiDAR) is passed through a LiDAR data parser that parses each piece of data, parses the checksum and other additional data in the LiDAR data, including the distance reading and the scan number. The scan number is sent up to the real-time layer and the distance reading is then sent to the next subfunction in the parse transform and send VI. \\ \\
 %
 The data from the lower FIFO queue (the position of the LiDAR in encoder ticks), then, is passed through a function that converts the encoder ticks to LiDAR position in degrees. That LiDAR position data is then passed to the next part of the transform code as the y-axis rotation (pitch).
 
@@ -293,9 +293,9 @@ The block diagram for the LiDAR transform VI is shown below:
 
 \noindent As can be seen in Figure \ref{fig:lidarrobotaxes}, the local coordinate system of the LiDAR is rotated relative to the coordinate system of the vehicle by a yaw of 45 degrees and a pitch that is measured by the encoders on the tilt units. \\ \\
 %
-\noindent Within the timed while loop in Figure \ref{fig:transformvi}, some simple arithmetic is used to adjust the scan angles such that the center of the scan has a scan angle of zero degrees with positive to the left of center in the LiDAR's mounted position and negative to the right of center. Refer to Figure \ref{fig:sick_angledef} to help figure out the angle definition\\ \\
+\noindent Within the timed while loop in Figure \ref{fig:transformvi}, some simple arithmetic is used to adjust the scan angles such that the center of the scan has a scan angle of zero degrees with positive to the left of center in the LiDAR's mounted position and negative to the right of center. Refer to Figure \ref{fig:sick_angledef} to help figure out the angle definition.\\ \\
 %
-The very last addition block of the code within the timed while loop also adds the 45 degree yaw of the 
+Note that the very last addition block of the code within the timed while loop accounts for the yaw of the LiDAR resulting from the mounting position. As is noted in Figure \ref{fig:lidarrobotaxes}, the LiDARs are mounted such that the LiDAR is yawed away from the center of the vehicle by 45 degreees (i.e. 45 degrees to the driver's right for the right side LiDAR and 45 degrees to the driver's left for the left side LiDAR). Since the code within the timed while loop is already adjusting the scan angle of the LiDAR scans, the yaw of the LiDARs is also accounted for in that timed while loop for convenience.\\ \\
 %
 The next subVI converts the LiDAR scan data from polar coordinates (i.e. scan angle and measured distance) to cartesian (i.e. the coordinate of the point with an X, Y and Z component). The block diagram is shown below:
 
@@ -307,6 +307,8 @@ The next subVI converts the LiDAR scan data from polar coordinates (i.e. scan an
 \end{figure}
 
 \noindent As can be seen in Figure \ref{fig:pol2cart}, the polar to cartesian transform is a standard implementation of how one would convert an angle and distance to an X and Y coordinate. For clarity, the following diagram demonstrates how this transform is done:
+
+\newpage
 
 \begin{figure}[h!]
 \centering
@@ -321,6 +323,8 @@ Returning to Figure \ref{fig:transformvi}, after the polar to cartesian conversi
 %
 The block diagram of the VI performing the rotation transformation of the LiDAR measurements from the LiDAR local coordinates to the vehicle coordinates is shown in the figure below:
 
+\newpage
+
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.6]{Photos/rotationblock.png}
@@ -328,4 +332,63 @@ The block diagram of the VI performing the rotation transformation of the LiDAR 
 \label{fig:rotationblock}
 \end{figure}
 
-\noindent In thi scase, the As can be seen in Figure \ref{fig:rotationblock}, 
+\noindent Referring to Figure \ref{fig:lidarrobotaxes}, to transform the LiDAR scan data from the LiDAR local coordinate frame to the robot coordinate frame, the scan data needs to be rotated by a yaw of 45 degrees and by the pitch of the tilt unit as measured by the tilt unit encoders. As described above, the yaw is accounted for in the timed loop in Figure \ref{fig:transformvi}. Therefore, the block diagram shown in Figure \ref{fig:rotationblock} accounts for the pitch of the LiDAR. The equations that perform this transform are:
+
+\begin{equation}
+X'=\cos(pitch)X + \sin(pitch)Z
+\label{eq:Xrot}
+\end{equation}
+\begin{equation}
+Y'=Y
+\label{eq:Yrot}
+\end{equation}
+\begin{equation}
+Z'=\cos(pitch)Z - sin(pitch)X
+\label{eq:Zrot}
+\end{equation}
+
+\noindent where X, Y  and Z are the scan data coordinates before the transform (i.e. coordinates in the LiDAR coordinate frame) and X', Y' and Z' are scan data coordinates after the transform (i.e. coordinates in the LiDAR coordinate frame). See this website for more details on rotation transforms and rotation matrices: \url{http://mathworld.wolfram.com/RotationMatrix.html}. \\ \\
+%
+In the LiDAR coordinate frame, the Z height of the points is all zero since the LiDAR performs a planar scan. So, all the Z values are zero in Equations \ref{eq:Xrot} and \ref{eq:Zrot} are zero. Therefore, Equations \ref{eq:Xrot}, \ref{eq:Yrot} and \ref{eq:Zrot} reduce to:
+
+\begin{equation}
+X'=\cos(pitch)X
+\label{eq:Xrot_simplified}
+\end{equation}
+\begin{equation}
+Y'=Y
+\label{eq:Yrot_simplified}
+\end{equation}
+\begin{equation}
+Z'=- sin(pitch)X
+\label{eq:Zrot_simplified}
+\end{equation}
+
+\noindent Equations \ref{eq:Xrot_simplified}, \ref{eq:Yrot_simplified} and \ref{eq:Zrot_simplified} are what is implemented in the block diagram shown in Figure \ref{fig:rotationblock}.\\ \\
+%
+Finally, referring back to Figure \ref{fig:transformvi}, the last part is the translate part highlighted in the figure. As shown in Figure \ref{fig:lidarrobotaxes}, to align the LiDAR and robot coordinate frames, there is a fixed X, Y and Z distance(also known as the X, Y and Z offsets) that separates the two coordinate frames. To transform the LiDAR scan data from the LiDAR coordinate frame to the robot coordinate frame, we essentially need to account for those fixed distances. As such, the 3 addition blocks in the translate part of Figure \ref{fig:transformvi} essentially add the X, Y and Z offsets to the X, Y and Z coordinates respectively that were output from the rotation VI. Therefore, the final result is the LiDAR data, properly transformed from the LiDAR coordinate frame to the vehicle LiDAR coordinate frame.
+
+\subsubsection{Send LiDAR Point to PC}
+Referring back to Figure \ref{fig:parseandsend}, after the VI that transforms the LiDAR scan data, the last step is to send that LiDAR scan data up to the real-time code. The block diagram for the parse transform and send VI is shown below:
+
+\newpage
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/inttobool.png}
+\caption{Block diagram for the Parse Transform and Send VI}
+\label{fig:inttobool}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:inttobool}, the VI takes the X, Y and Z coordinates of each LiDAR scan data point and the count which is the scan number (i.e. the nth point in the scan) for the point. The VI also takes the LiDAR that performed the scan coded as either 91 (right LiDAR) or 92 (left LiDAR). Using the number to boolean block, each integer number for X, Y, Z and count is converted to a boolean array. This is essentially converting each number into the bit definition for each number. The four boolean arrays are then concatenated together to form one long boolean array which is then passed to the write to PC VI to send to the real-time code.\\ \\
+%
+The block diagram for the Write to PC VI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{Photos/sendtopc.png}
+\caption{Block diagram for the Write to PC VI}
+\label{fig:sendtopc}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:sendtopc}, the boolean array created from the integers in the Transform and Send VI is now combined with the LiDAR ID, which is also converted to a boolean array. The combined boolean array is then passed to a DMA FIFO queue that sends the data up to the real-time code from the FPGA.
