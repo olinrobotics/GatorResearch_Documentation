@@ -239,7 +239,7 @@ Referring back to Figure \ref{fig:readlidarblock}, the block on the far right is
 The data from the lower FIFO queue (the position of the LiDAR in encoder ticks), then, is passed through a function that converts the encoder ticks to LiDAR position in degrees. That LiDAR position data is then passed to the next part of the transform code as the y-axis rotation (pitch).
 
 \subsubsection{LiDAR to Robot Transform: Overview}
-As shown in Figure \ref{fig:parseadsend}, the next step in the transform process is the transform itself. The data returned by the Sick LMS290 LIDARs is in the co-ordinate frame of the LIDARs by virtue of the way in which the LIDARs take readings. In order to do useful work with the LIDAR data, the LIDAR data has to be transformed to make it iwth reference to the vehicle co-ordinate system.
+As shown in Figure \ref{fig:parseandsend}, the next step in the transform process is the transform itself. The data returned by the Sick LMS290 LIDARs is in the co-ordinate frame of the LIDARs by virtue of the way in which the LIDARs take readings. In order to do useful work with the LIDAR data, the LIDAR data has to be transformed to make it iwth reference to the vehicle co-ordinate system.
 
 \subsubsection{Constant LIDAR Transform Properties}
 Based on the design and placement of the LIDAR mounts, the following properties of the LIDAR transform are applied to make the transform:
@@ -392,3 +392,61 @@ The block diagram for the Write to PC VI is shown below:
 \end{figure}
 
 \noindent As can be seen in Figure \ref{fig:sendtopc}, the boolean array created from the integers in the Transform and Send VI is now combined with the LiDAR ID, which is also converted to a boolean array. The combined boolean array is then passed to a DMA FIFO queue that sends the data up to the real-time code from the FPGA.
+
+\subsection{Supporting Hardware Control}
+
+Referring back to Figure \ref{fig:hindbrainblock}, the last section of the code in that block diagram is the supporting hardware control VIs. That section of the block diagram is shown here zoomed in for convenience:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=2.0]{Photos/supportinghardwarevis.png}
+\caption{Zoomed in portion of the Hindbrain VI showing the supporting hardware VIs}
+\label{fig:supportinghardwarevis}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:supportinghardwarevis}, there are 6 supporting hardware VIs:
+
+\begin{enumerate}
+\item Steer Motor: Controls the steering motor
+\item Throttle Control: Controls the throttle and brakes
+\item Rear End Stops: Senses the steering end stops
+\item EStop Sense: Senses if the emergency stop switches on the vehicle (both the one in the cab and the one on the electronics box) have been depressed
+\item Left TU: Controls the right tilt unit
+\item Right TU: Controls the left tilt unit
+\emd{enumerate}
+
+\subsubsection{Steering Motor Control}
+
+The block diagram for the steering motor controller is shown below:
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=2.0]{Photos/steermotorblock.png}
+\caption{Block Diagram of the Steering Motor Controller VI}
+\label{fig:steermotorblock}
+\end{figure}
+
+\noindent The block diagram shown in Figure \ref{fig:steermotorblock} is obtained from \url{http://zone.ni.com/devzone/cda/epd/p/id/1580}. As such, this report will not discuss every aspect of the code in detail but will isntead provide a general overview. \\ \\
+%
+As can seen in Figure \ref{fig:steermotorblock}, there are 4 parts to the block diagram:
+
+\begin{enumerate}
+\item The upper timed while loop simply reads the quadrature encoder ticks and keeps track of the position of the steer motor based on the number of encoder ticks. That position is then converted to steering wheel angle in degrees
+\item The lower left timed while loop does several things:
+\begin{enumerate}
+\item Converted the steering wheel angle command to encoder ticks setpoint
+\item Disseminates the steering controller settings to the appropriate parts in the code
+\end{enumerate}
+\item A PID block that takes in the desired setpoint, PID settings and the limit and produces an output
+\item Finally, the lower right timed while loop simply checks the output from the PID block to make sure it is within the set lower and upper thresholds and is not within the deadband. 
+\end{enumerate}
+
+\noindent For the PID block, it is worth noting that the inputs and outputs to the PID block are required to all be a fixed-point number with a 16-bit word length, 32-bit integer length number. This means that the inputs and outputs to the PID block must all be integer multiples of 65536 (i.e. 2^{16}). For this reason, the inputs are multiplied by 65536 and the outputs are divided by 65536.
+
+\subsubsection{Read End Stops}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=2.0]{Photos/steermotorblock.png}
+\caption{Block Diagram of the Steering Motor Controller VI}
+\label{fig:steermotorblock}
+\end{figure}
