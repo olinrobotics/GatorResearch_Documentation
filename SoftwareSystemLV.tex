@@ -413,14 +413,16 @@ Referring back to Figure \ref{fig:hindbrainblock}, the last section of the code 
 \item EStop Sense: Senses if the emergency stop switches on the vehicle (both the one in the cab and the one on the electronics box) have been depressed
 \item Left TU: Controls the right tilt unit
 \item Right TU: Controls the left tilt unit
-\emd{enumerate}
+\end{enumerate}
+
+\newpage
 
 \subsubsection{Steering Motor Control}
 
 The block diagram for the steering motor controller is shown below:
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=2.0]{Photos/steermotorblock.png}
+\includegraphics[scale=0.3]{Photos/steermotorblock.png}
 \caption{Block Diagram of the Steering Motor Controller VI}
 \label{fig:steermotorblock}
 \end{figure}
@@ -440,13 +442,113 @@ As can seen in Figure \ref{fig:steermotorblock}, there are 4 parts to the block 
 \item Finally, the lower right timed while loop simply checks the output from the PID block to make sure it is within the set lower and upper thresholds and is not within the deadband. 
 \end{enumerate}
 
-\noindent For the PID block, it is worth noting that the inputs and outputs to the PID block are required to all be a fixed-point number with a 16-bit word length, 32-bit integer length number. This means that the inputs and outputs to the PID block must all be integer multiples of 65536 (i.e. 2^{16}). For this reason, the inputs are multiplied by 65536 and the outputs are divided by 65536.
+\noindent For the PID block, it is worth noting that the inputs and outputs to the PID block are required to all be a fixed-point number with a 16-bit word length, 32-bit integer length number. This means that the inputs and outputs to the PID block must all be integer multiples of 65536 (i.e. $2^{16}$). For this reason, the inputs are multiplied by 65536 and the outputs are divided by 65536.
 
-\subsubsection{Read End Stops}
+\subsubsection{Throttle Control}
+
+The block diagram for the VI that controls the gas and brake pedal is shown below:
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=2.0]{Photos/steermotorblock.png}
-\caption{Block Diagram of the Steering Motor Controller VI}
-\label{fig:steermotorblock}
+\includegraphics[scale=0.75]{Photos/throttlecontrol.png}
+\caption{Block Diagram of the Throttle Control VI}
+\label{fig:throttlecontrol}
 \end{figure}
+
+\noindent As shown in Figure \ref{fig:throttlecontrol}, there are two main while loops:
+
+\begin{enumerate}
+\item The upper while loop simply monitors the quadrature encoder on the rear wheels and computes the velocity and distance traveled by the vehicle. 
+\item The lower while loop then controls the gas pedal based on the speed of vehicle calculated in the upper while loop. The PID block in that while loop therefore controls the vehicle speed by comparing the calculated vehicle speed and the desired vehicle speed and produces an output that is used to control the gas pedal. 
+\end{enumerate}
+
+\noindent Also note that at the bottom of the bottom right timed while loop in Figure \ref{fig:throttlecontrol}, the loop also takes a boolean that represents whether the brakes need to be activated or not. The loop then controls the brake pedal to apply the brake when the boolean is true.
+
+\subsubsection{Read End Stops}
+
+The VI that reads the end stop sensors is simple and is shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/ReadEndStops.png}
+\caption{Block Diagram of the Read End Stops VI}
+\label{fig:readendstops}
+\end{figure}
+
+\noindent The VI simply reads the state of two digital pins, 1 for each end stop (cherry) sensor, and writes the boolean balue to the appropriate FPGA global variable. 
+
+\newpage
+
+\subsubsection{EStop Sense}
+
+The block diagram for the VI that sense the activation of the emergency stop buttons on the vehicle is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/estopsense.png}
+\caption{Block Diagram of Emergency Stop Sense VI}
+\label{fig:estopsense}
+\end{figure}
+
+\noindent Like the Read End Stops VI, this VI also simply reads a digital pin to determine if either of the estop buttons on the vehicle have been depressed. The while loop then passes the boolean up to an FPGA gobal variable so that the real-time code can have access to that information.
+
+\newpage
+
+\subsubsection{Right and Left Tilt Unit Control}
+
+The block diagram for the left and right tilt unit controllers is shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.65]{Photos/tucontroller.png}
+\caption{Block Diagram of the Left and Right Tilt Unit Controller}
+\label{fig:tucontroller}
+\end{figure}
+
+\noindent Note that although the left and right tilt unit controllers are separate VIs as shown in Figure \ref{fig:supportinghardwarevis}, the two VIs are exactly the same except for the chassis and module number that is set on the blocks that write and read from the NI modules since the left and right tilt units are each controlled by a separate NI 9505 module.\\ \\
+%
+As shown in Figure \ref{fig:tucontroller}, the tilt unit controller is made up of 6 parts:
+
+\begin{enumerate}
+\item Information exchange loop: The information exchange loop is simply responsible for reading the state of the tilt unit and writing commands to the tilt unit controller code. So, for example, the tilt unit commands are received from the real-time code and, through the information exchange loop, passed down to the relevant parts of the tilt unit control code. Similarly, the tilt unit state is read from the various parts of the tilt unit control code and, through the information exchange loop, is made available to the real-time code to read.
+\item Position loop: The position loop simply provides PID control over the position of the tilt unit using the PID settings specified in the tilt unit settings cluster.
+\item Current loop: The current loop simply provides PI control over the current output to the tilt unit motor using the PI settings specified in the tilt unit settings cluster.
+\item Current Sampling: Samples the current output to the tilt unit motor.
+\item Encoder loop: Reads the quadrature encoder on the tilt unit and keeps track of the position of the tilt unit in units of encoder ticks.
+\item PWM Generation: Generates the PWM signal used to drive the tilt unit motor. 
+\end{enumerate}
+
+\noindent Note that there is a case statement around the desired current used in the PWM generation loop that selects the source of the desired current. Also note that there is a 'Init?' switch that allows the real-time code to switch the mode of the tilt unit controller to either be in init mode or normal running mode. \\ \\
+%
+The tilt unit controller code was designed to operate in the following way:
+
+\begin{enumerate}
+\item If the tilt unit is running in normal running mode (i.e. the 'Init?' switch is set to false), the six loops essentially carry out standard torque control to maintain the tilt unit at a desired setpoitn position. In this case, in the PWM generation loop, the source of the desired current is the current put out by the current loop.
+\item If the tilt unit is running in initialize mode, the source of the desired current in the PWM generation loop is simply the desired initialize current set in the real-time code. In this case, the control output from the six loops is ignored and the PWM generation loop is simply given a fixed desired current to operate in during initialization.
+\end{enumerate}
+
+\subsection{Relay Control}
+
+The last part of the Hindbrain VI shown in Figure \ref{fig:hindbrainblock} is the relay control. For convenience, the relay control portion of the block diagram is zoomed in and shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1.4]{Photos/relaycontrolportion.png}
+\caption{Block diagram of the relay control of portion of the hindbrain}
+\label{fig:relaycontrolportion}
+\end{figure}
+
+\noindent This relay controller serves as a key safety system for the vehicle and the while loop allows LabVIEW to trigger the emergency stop system and will only allow the vehicle's autonomous systems to stay active only if all levels of control code (i.e. FPGA, LabVIEW midbrain, ROS midbrain and ROS forebrain as well as OCU code and remote emergency stop) must be running and active. If any of the code freezes or execution is suspended, LabVIEW should trigger the emergency stop. As such, as shown in Figure \ref{fig:relaycontrolportion}, the while loop  takes as input the heartbeat the represents proper running of all other layers of code from the real-time code and also a manual override that is included to allow a human operator to override the decisions of the autonomous code to control the relay. This is then fed into a subVI that determines if the heartbeat boolean is running as expected and the output of that subVI controls the state of the relay. \\ \\
+%
+The block diagram for that subVI is then shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.55]{Photos/relaycontrolsubvi.png}
+\caption{Block diagram of the relay control subVI}
+\label{fig:relaycontrolsubvi}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:relaycontrolsubvi}, the subVI essentially checks to see that the heartbeat is alternating between true and false each cycle through the loop. If this alternating behavior of the heartbeat is not observed, the VI will trigger the emergency stop system and shut the robot down.\\ \\
+%
+It must be noted at this point that although the code is designed to operate in this way, the hardware is not ready to support this. Specifically, there needs to be a hardware adapter that allows the FPGA digital I/O module (that can only source 1mA of current) to operate a relay that typically has a higher current draw than 1mA. A future team will need to adjust the relay hardware to make this relay system function in this way. 
