@@ -617,7 +617,6 @@ The block diagram for the Initialize Communications (Init Coms) VI is shown in t
 \subsubsection{Initialize Camera VI}
 
 The block diagram for the Initialize Camera VI is shown below:
-
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.75]{Photos/initcamblock.png}
@@ -634,13 +633,216 @@ The block diagram for the Initialize Camera VI is shown below:
 \item Get Image Info: Gets the image parameters to determine the image size and type
 \end{enumerate}
 
+\newpage
+
 \subsection{Run Parallel Processing VIs}
 
-Referring back to Figure ref{fig:pcmainblock_annotated}, the next step after initialization is to run the other real-time parallel processing VIs that support the operation of the vehicle. The block diagram for the Run VIs subvi is shown below:
+Referring back to Figure \ref{fig:pcmainblock_annotated}, the next step after initialization is to run the other real-time parallel processing VIs that support the operation of the vehicle. The block diagram for the Run VIs subvi is shown below:
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.75]{Photos/initcamblock.png}
-\caption{Block diagram of the Initialize Camera VI}
-\label{fig:initcamblock}
+\includegraphics[scale=0.35]{Photos/RunVIs.png}
+\caption{Block diagram of the Run VIs VI}
+\label{fig:runvis}
 \end{figure}
+
+\noindent As can be seen in Figure \ref{fig:runvis}, four VIs are run that carry out processes in parallel in the background:
+
+\begin{enumerate}
+\item Maintain FPGA Communications: Manages communication between the real-time code and FPGA code by sending commands and settings from the real-time layer to the FPGA layer and sending hardware states from the FPGA layer to the real-time layer. 
+\item Maintain Mission Clock: Maintains a running mission clock
+\item Run ROS Network: Runs the VI responsible for managing the transfer of data from the LabVIEW layers to the ROS layers
+\item Run Camera Processes: Runs a VI responsible for assembling the pointcloud using data from the LiDARs
+\end{enumerate}
+
+\newpage
+
+\subsubsection{Maintain FPGA Communications}
+
+The block diagram for the Maintain FPGA communications VI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.55]{Photos/MaintainFPGAComms_annotated.png}
+\caption{Block diagram of the Maintain FPGA Communications VI}
+\label{fig:maintainfpgacomms}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:maintainfpgacomms}, the VI essentially runs 4 timed while loops and 1 normal while loop in parallel to communicate with the following parts of the FPGA code:
+
+\begin{enumerate}
+\item LiDAR I/O: Communicates with the FPGA using the DMA FIFO queues that take the transformed LiDAR data as input that is then retrieved in this timed while loop. The LiDAR data is then fed to a LiDAR parser that reads the boolean array that represents the LiDAR data and determines which LiDAR (left or right) generated the data. The parser also extracts the X, Y and Z values of the LiDAR data and formats the LiDAR data into an appropriate array that is then written to either the LiDARPointsRaphael or LiDARPointsLeonardo global variables depending on which LiDAR the data originated from.
+\item Vehicle Controller: Communicates with the FPGA using read/write controls to send the desired heading and velocity as well as a command to apply the brakes down to the FPGA to execute. The timed while loop also reads the state of the vehicle including, for example, the drive state, steering state and wheher the vehicle has triggered any of its steering end stops.
+\item Left Tilt Unit Controller: Like the vehicle controller, this timed while loop also communicates with the FPGA using read/write controls to send the desired tilt unit command that includes, among other things, the desired position setpoint and whether the tilt unit should be in init mode or not. The commands to enable or disable the drive are also sent in this way. In addition, the timed while loop also reads the state of the tilt unit including, for example, any faults that the NI9505 module might report as well as the current position of the tilt unit.
+\item Right Tilt Unit Controller: This timed while loop is exactly the same as the left tilt unit but addresses the corresponding FPGA code elements for the righ tilt unit instead of the left.
+\item EStop \& State Handler: This normal while loop performs 2 functions:
+\begin{enumerate}
+\item Reads the error states of each while loop and ensures that all error states are false before triggering a True to indicate that the MaintainFPGACommunications VI is functioning correctly
+\item Reads the global stop and passes the global stop command to the rest of the MaintainFPGACommunications VI to stop all the while loops when the global stop is triggered.
+\end{enumerate}
+\end{enumerate}
+
+\subsubsection{Maintain Mission Clock}
+
+The block diagram for the Maintain Mission Clock VI is shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.85]{Photos/maintainmissionclock.png}
+\caption{Block diagram of the Maintain Mission Clock VI}
+\label{fig:maintainmissionclock}
+\end{figure}
+
+\noindent The Maintain Mission Clock VI is essentially responsible for keeping a running count of the elapsed mission time in miliseconds using the tick count function. 
+
+\newpage
+
+\subsubsection{Run ROS Network}
+
+The block diagram for the Run ROS Network VI is shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Photos/rosmidbrain.png}
+\caption{Block diagram of the ROS Midbrain VI}
+\label{fig:rosmidbrain}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:rosmidbrain}, the Run Ros Network VI (also known as the ROS Midbrain network) essentially consists of 10 identical UDP transmitters that transmits the relevant data required by the ROS system by publishing the data from LabVIEW over UDP. The data being transmitted includes:
+
+\begin{enumerate}
+\item Move Base
+\item Steering Angle
+\item Wheel Velocity
+\item EStops
+\item Heartbeat
+\item Left Tilt Unit Angle
+\item Right Tilt Unit Angle
+\item IMU
+\item GPS
+\item Odometer
+\end{enumerate}
+
+\noindent The VI is set up to transmit the front camera image but that has been disabled since it was not used at the time of writing of this report.\\ \\
+%
+Each UDP transmitter looks as shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/udppub.png}
+\caption{Block diagram of each UDP transmitter VI}
+\label{fig:udppub}
+\end{figure}
+
+\noindent Each UDP transmitter begins with the settings for the UDP transmitter: the timeout duration, port configuration and update period. This information is then passed to a UDP initialization node that creates a connection ID. The UDP connection information is then passed to a timed while loop. In that timed while loop, there are two subVIs: a VI that converts the relevant data into a string and another VI that takes that string and publishes it over UDP as specified by the UDP connection information. The timed while loop also contains a conditional that watches the global stop and shuts down the ROS network if the global estop is triggered. Finally, after the timed while loop, a function is used to shutdown the UDP connection when the estop is triggered.\\ \\
+%
+For brevity, this report will not discuss the various VIs that converts the relevant data into a string. However, those VIs are relatively simple and should be straightforward to read and understand.
+
+\subsubsection{Run Camera Processes}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{Photos/allimaging.png}
+\caption{Block diagram for the Camera Processes VI}
+\label{fig:allimaging}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:allimaging}, the VI starts by initializing the GlobalPCL (global pointcloud) global variable that is used to store the pointcloud that will be generated using LiDAR data from the left and right LiDARs. After initialization, the camera processes VI then performs three steps:
+
+\begin{enumerate}
+\item Capture an Image
+\item Perform depth registration on the image to match X, Y and Z position data with the color of the point from the camera image
+\item Populate the pointcloud array with the depth-registered data
+\end{enumerate}
+
+\noindent The block diagram for the capture image VI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.85]{Photos/imagecap.png}
+\caption{Block diagram for the Image Capture VI}
+\label{fig:imagecap}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:imagecap}, the VI simply uses the grab function to grab an image using the camera and stores it in the designated name space. The VI also gets the image resolution and type and stores it along with the image.
+
+\subsubsection{Depth Registration}
+The next step is depth registration and the block diagram for that VI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/depthreg.png}
+\caption{Block diagram for the Depth Registration VI}
+\label{fig:depthreg}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:depthreg}, there are two steps to the depth registration process: registration to locate the LiDAR point in X-Y-Z coordinates in the image in units of pixels adn then to obtain the corresponding color for that point.
+
+\newpage
+
+\noindent The block diagram for the depth registration VI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{Photos/lidar2cam_annotated.png}
+\caption{Block diagram for the depth registration VI}
+\label{fig:lidar2cam}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:lidar2cam}, the process of depth registration is as follows: the VI takes the array of LiDAR points as input and iterates through each point. Each point is passed into a subVI that carries out a process known as perspective projection to locate the LiDAR point in cartesian coordinates into the location of the point in the image. As part of perspective projection, there are intrinsic parameters (parameters of the camera) as well as extrinsic parameters (parameters related to how the camera is positioned relative to the origin of the coordinate system the LiDAR points reference) that must be known to properly perform perspective projection. The output of perspective projection is the X and Y location of the point in the image in terms of pixels which is then appended to an output array.
+
+\newpage
+
+\subsubsection{Perspective Projection}
+The perspective projection subVI is then shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.65]{Photos/perspectiveprojection.png}
+\caption{Block diagram for the Perspective Projection VI}
+\label{fig:perspectiveprojection}
+\end{figure}
+
+\noindent The block diagram shown in Figure \ref{fig:perspectiveprojection} is implementing the math that is involved in perspective projection. The following pages will discuss how perspective projection works.
+
+\newpage
+
+\includepdf[scale=0.9, pages=25-26, clip, trim=0mm 25mm 0mm 25mm, pagecommand={}]{Fall2015GatorReport.pdf}
+\includepdf[scale=0.9, pages=27, clip, trim=0mm 95mm 0mm 25mm, pagecommand={}]{Fall2015GatorReport.pdf}
+
+\subsection{The State Machine}
+
+As shown in Figure \ref{fig:pcmainblock_annotated}, after the Run VIs VI, the next step is the state machine itself. The state machine is the key component that controls the vehicle. There are five main states to the state machine:
+
+\begin{enumerate}
+\item Initialize Robot
+\item Wait for Event
+\item Run Robot
+\item Debug Robot
+\item Shutdown
+\end{enumerate}
+
+The next few subsections will discuss each state of the state machine.
+
+\subsubsection{Initialize Robot}
+
+Since most of the actual initialization is done before the state machine even begins to run, the initialize robot state is used to allow the operator to confirm that initialization was performed successfully. The front panel is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.65]{Photos/initrob_front.png}
+\caption{Front panel of the initialize robot tab VI}
+\label{fig:initrob_front}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:initrob_front}, the front panel of the initialize robot tab provides a panel of indicator lights that show which parts of the code have initialized properly. The front panel also provides an indicator that displays a real-time image from the front camera and an indicator for the error messages coming through the state machine to help debug any problems. Finally, the front panel provides 2 buttons:
+
+\begin{enumerate}
+\item Initialize Tilt Units: Clicking the button initiates initialization of the left and right tilt unit (discussed further below)
+\item Ok button: Clicking it moves the state machine on to the wait for event state, allowing the operator to confirm that the vehicle has initialized correctly.
+\end{enumerate}
+
+\noindent The block diagram for the VI that initializes the left and right tilt unit is shown below:
+
+ 
+
