@@ -552,3 +552,95 @@ The block diagram for that subVI is then shown in the figure below:
 \noindent As can be seen in Figure \ref{fig:relaycontrolsubvi}, the subVI essentially checks to see that the heartbeat is alternating between true and false each cycle through the loop. If this alternating behavior of the heartbeat is not observed, the VI will trigger the emergency stop system and shut the robot down.\\ \\
 %
 It must be noted at this point that although the code is designed to operate in this way, the hardware is not ready to support this. Specifically, there needs to be a hardware adapter that allows the FPGA digital I/O module (that can only source 1mA of current) to operate a relay that typically has a higher current draw than 1mA. A future team will need to adjust the relay hardware to make this relay system function in this way. 
+
+\newpage
+
+\section{The Real-Time Midbrain}
+
+The LabVIEW real-time midbrain code serves the following functions:
+
+\begin{enumerate}
+\item Initialize the hardware systems on the robot
+\item Transfer data between the FPGA and real-time layers
+\item Transfer data between the LabVIEW real-time code and the ROS code
+\item Keep track of a running mission clock (elapsed mission time)
+\item Run camera data processing functions
+\item Provides a state machine that serves as the real-time portion of the vehicle controller
+\end{enumerate}
+
+\noindent The block diagram of the PC-Main VI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Photos/pcmainblock_annotated.png}
+\caption{Block diagram of the PC Main real-time code}
+\label{fig:pcmainblock_annotated}
+\end{figure}
+
+\noindent As highlighted by the arrows and red dotted lines in Figure \ref{fig:pcmainblock_annotated}, the most important part of the PC main code is the state machine that controls the vehicle. The rest of the pieces perform the supporting roles:
+
+\begin{enumerate}
+\item Initialize communications and hardware controller settings
+\item Running the process VIs that run in parallel with the PC Main VI (explained in a later section of this report)
+\item Emergency stop management that passes the global emergency stop signal to the emergencys top signals in all supporting VIs
+\item Shutdown robot, initialize state machine and reset estops VIs and function blocks that properly shut the state machine down and reset the state machine
+\end{enumerate}
+
+\subsection{Initialize Communications}
+
+The block diagram for the Initialize Communications (Init Coms) VI is shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Photos/initcommsblock.png}
+\caption{Block diagram of the Initialize Communications VI}
+\label{fig:initcommsblock}
+\end{figure}
+
+\noindent As can be shown in Figure \ref{fig:initcommsblock}, the Initialize Communications VI has the following parts:
+
+\begin{enumerate}
+\item Initialize Constants: This part initializes the constants that control the operation of the state machine: it sets all the estops for all parts of the code to false to ensure that all the parts of the LabVIEW code will run, sets the constants needed to display the pointcloud on the polar histrogram and initialize the logging file.
+\item Create FPGA Reference: This part creates a reference to the FPGA code so that the real-time layer knows where and how to address the FPGA code.
+\item Initialize Hardware Controller Settings: This series of read/write controls takes hardware settings for the steering controller, left and right LiDAR tilt unit transform settings, throttle controller settings and the left and right tilt unit controller settings. The read/write controls then sends those settings to the FPGA code using the reference specified by the FPGA reference.
+\item Run FPGA VI: This invoke method node is used to run the FPGA code. It is located at this position in the initialize communications VI so that all the settings can be set before the FPGA code is run.
+\item Initialize Camera VI: Initializes the camera and sets up the image spaces that are needed to store the camera parameters (see the related subsection below)
+\item Initialize IMU: Sets and initializes the VISA serial port to communicate with the MicroStrain IMU
+\item Initailize GPS: Sets and initializes the VISA serial port to communicate with the GPS
+\item Initialize Xbox Controller: Initializes communication with an Xbox controller that could be used to control and drive the vehicle
+\item Create PointCloud display: Creates the scene objet that is used to dislay the pointcloud generated from the 2 LiDARs
+\item Set Initialization State: Sets boolean indicators that indicates whether the part of the initialization code excuted correctly. These are used to confirm if initialization occured fully and, if not, where in the initialization process an error occurred.
+\end{enumerate}
+
+\newpage
+
+\subsubsection{Initialize Camera VI}
+
+The block diagram for the Initialize Camera VI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/initcamblock.png}
+\caption{Block diagram of the Initialize Camera VI}
+\label{fig:initcamblock}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:initcamblock}, the Initialize Camera VI performs the following functions in this order:
+
+\begin{enumerate}
+\item Open Camera VI: The VI opens the camera and creates a session reference that is needed by other camera function VIs
+\item Configure Grab VI: Configures the grab function that can be used later to capture images using the camera
+\item IMAQ Create: Creates an image space to store the image captured by the camera
+\item Get Image Info: Gets the image parameters to determine the image size and type
+\end{enumerate}
+
+\subsection{Run Parallel Processing VIs}
+
+Referring back to Figure ref{fig:pcmainblock_annotated}, the next step after initialization is to run the other real-time parallel processing VIs that support the operation of the vehicle. The block diagram for the Run VIs subvi is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{Photos/initcamblock.png}
+\caption{Block diagram of the Initialize Camera VI}
+\label{fig:initcamblock}
+\end{figure}
