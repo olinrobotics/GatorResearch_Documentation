@@ -822,15 +822,15 @@ As shown in Figure \ref{fig:pcmainblock_annotated}, after the Run VIs VI, the ne
 \item Shutdown
 \end{enumerate}
 
-The next few subsections will discuss each state of the state machine.
+\noindent The next few subsections will discuss each state of the state machine.
 
 \subsubsection{Initialize Robot}
 
-Since most of the actual initialization is done before the state machine even begins to run, the initialize robot state is used to allow the operator to confirm that initialization was performed successfully. The front panel is shown below:
+Since most of the actual initialization is done before the state machine even begins to run, the initialize robot state allows the operator to confirm that initialization was performed successfully. The front panel is shown below:
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.65]{Photos/initrob_front.png}
+\includegraphics[scale=0.35]{Photos/initrob_front.png}
 \caption{Front panel of the initialize robot tab VI}
 \label{fig:initrob_front}
 \end{figure}
@@ -844,5 +844,20 @@ Since most of the actual initialization is done before the state machine even be
 
 \noindent The block diagram for the VI that initializes the left and right tilt unit is shown below:
 
- 
+ \begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{Photos/InitTiltUnits_annotated.png}
+\caption{Block Diagram for the Init Tilt Units VI}
+\label{fig:inittiltunits}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:inittiltunits}, the VI consists of a flat sequence that enforces the order of operations. That flat sequence has 5 parts:
+
+\begin{enumerate}
+\item Confirm EStops: This part confirms that the mechanical estops on the vehicle have been released before attempting to initialize the tilt units. Since power to the tilt units is controlled by the emergency stop system, the mechanical estops must be off for the tilt units to initialize properly. The dialogue box with the message to the operator will be triggered until the emergency stops are detected as released.
+\item Disable Drives: This part is a safety precaution. To avoid the tilt units moving without being commanded to, both the left and right tilt unit drives are disabled to avoid the tilt units moving.
+\item Wait: Creates a 10msec wait to ensure that the drives are disabled before proceeding
+\item Initialize Left Tilt Unit: Initializes the left tilt unit
+\item Initialize Right Tilt Unit: Initializes the right tilt unit
+\end{enumerate}
 
