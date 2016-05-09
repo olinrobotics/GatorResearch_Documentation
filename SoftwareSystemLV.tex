@@ -861,3 +861,91 @@ Since most of the actual initialization is done before the state machine even be
 \item Initialize Right Tilt Unit: Initializes the right tilt unit
 \end{enumerate}
 
+\noindent The Initialize Left Tilt Unit and Initialize Right Tilt Unit VIs are essentially the same initialize tilt unit VI except that they address the appropriate variables for the left and right tilt unit. The block diagram for the initialize tilt unit VI is shown below:
+
+ \begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Photos/initTU.png}
+\caption{Block Diagram for the VI that Initailizes the Tilt Units}
+\label{fig:inittu}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:inittu}, the VI consists of a flat sequence that is used to ensure that a particular set of steps is used to initialize the tilt units in a strict order. There are 8 steps to initialize the tilt units corresponding to the 8 panels of the flat sequence:
+
+\begin{enumerate}
+\item Enable the drive and place the tilt unit in initialization mode to perform initialization
+\item Checks the status of the NI9505 module and waits until the drive status indicates enabled before moving on in the initialization process
+\item Sets the output current during initialization to 500 (which roughly corresponds to 3A), which should start moing the tilt unit. Also, records the initial milisecond count for the next step
+\item In this step, the index boolean is checked within a while loop and as soon as the Index? boolean registers as true, the while loop is stopped. In this step, the loop also checks to see if 5 seconds has passed. If 5 seconds has passed, the tilt unit triggers a timeout on the initialization procedure and sets an error message as such if this happens.
+\item Regardless of whether initialization times out or not, the initialization current is set to zero to stop moving the tilt unit
+\item This step takes the tilt unit out of initialization mode, resets the position so that zero degrees is where the index pulse is located and sets the desired position setpoint to 35 degrees, which also corresponds to where the index pulse is located. 
+\item The initialization takes a 10ms pause to allow the reset position command to reach the FPGA code
+\item This last step removes the reset position command so that the tilt unit counts encoder ticks again
+\end{enumerate}
+
+\subsubsection{Wait for Event}
+
+The wait for event state is simple: it simply provides four buttons on the front panel as shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.4]{Photos/waitforevent.png}
+\caption{Front Panel for the Wait for Event State}
+\label{fig:waitforevent}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:waitforevent}, the four button on the front panel represent these 4 options:
+
+\begin{enumerate}
+\item Run Robot: If the button is selected, the state machine will move to the Run Robot state
+\item Reinitialize robot: If the button is selected, the state machine will go back to the Initialize Robot state to allow the operator to check the robot's initialization again
+\item Debug Robot: If the button is selected, the state machine will go to the Debug Robot state to allow the operator to debug the functioning of the robot
+\item Exit: If the button is selected, the state machine will go into Shutdown mode and shutdown the vehicle
+\end{enumerate}
+
+\noindent In the block diagram, an event handler is used to drive the Wait For Event state. When a button is clicked, the corresponding event handler is triggered and the corresponding next state is set.
+
+\subsubsection{Run Robot}
+
+The Run Robot state is typically used to run a mission on the vehicle. Since most of the vehicle controllers run in parallel with the state machine, the Run Robot state can be used to run particular aspects of a mission. \\ \\
+%
+Although the Run Robot state currently has code written in it, at the time of writing, the code was largely experimental and non-functional and therefore will not be explained. Any follow-on team should feel free to remove the code and replace it with whatever is needed. 
+
+\subsubsection{Debug Robot}
+
+The debug robot state is used to allow an operator to debug the functioning of the vehicle. The front panel of the debug state is shown below:
+
+\newpage
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.4]{Photos/debugrobot.png}
+\caption{Front Panel for the Debug Robot State}
+\label{fig:debugrobot}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:debugrobot}, the front panel provides the following features:
+
+\begin{enumerate}
+\item Manual vehicle controls that allow the operator to manually command the vehicle speed and desired wheel angle
+\item Current vehicle status that allows the operator to view the current vehicle speed, wheel angle, vehicle heading as well as the latitude and longitude GPS position of the vehicle
+\item Graph tabs that allow the operator to view the top view and front view of the LiDAR data
+\item An indicator that indicates whether the emergency stop switches have been triggered
+\item Controls and indicators that allow the operator to command the position of the left and right tilt unit as well as monitor the current angle of the tillt units
+\item Finally, provides 2 buttons: one to send the state machine back to the Initialize Robot state and another to send the state machine back to the Wait for Event state
+\end{enumerate}
+
+\noindent The block diagram for this state is simple. It simply takes the values read by the indicators and sends it through the global variables to the Maintain FPGA Communications VI that will send those commands down to the FPGA code. Equally, values from the FPGA code are read up through Maintain FPGA Communications VI, through the global variables and then to the indicators in this state.
+
+\subsubsection{Shutdown}
+
+The Shutdown state is simple: it simply triggers shutdown of the vehicle. The state has no significant front panel elements and in the block diagram, it simply sets the global estop variable to true to shutdown all levels of code.
+
+\subsection{Shutdown Robot}
+
+As shown in Figure \ref{fig:pcmainblock_annotated}, after the state machine triggers shutdown, the code then executes the Shutdown Robot VI. The block diagram is shown below:
+
+
+\subsection{Reinitialize State Machine}
+\subsection{Reset Estops}
+\subsection{Emergency Stop Management}
