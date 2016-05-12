@@ -44,6 +44,8 @@ The software that runs the Gator includes a stack running on Robot Operating Sys
 %
 \noindent The software on the vehicle is broken up into three main parts: Forebrain, Midbrain and Hindbrain. Each part has a different function and operating speed. The hindbrain has %the fastest operating speed and is used for low-level control of the control surfaces on the vehicle such as the gas and brake pedals. As such, the hindbrain is implemented on a National %Instruments NI FPGA. The midbrain has two parts: one handling LabVIEW internal processing and another handling passing of sensor and vehicle information from LabVIEW to ROS. %Finally, the forebrain is entirely ROS-based and handles all the high-level processing tasks such as path planning and intelligent obstacle avoidance. \\ \\
 %
+As far as storage of the code base, the LabVIEW code is stored by a subversion server provider called Assembla. The repository for the LabVIEW-based code can be found here: \url{https://www.assembla.com/spaces/olin-gator-research/subversion/source}. Since the ROS code is text-based, it is stored on Github here: \url{https://github.com/olinrobotics/GatorResearch}. \\ \\
+%
 In the upcoming chapters, the various components of the software stack will be discussed in full detail.
 
 \newpage
@@ -52,7 +54,5 @@ In the upcoming chapters, the various components of the software stack will be d
 \input{SoftwareSystemLV}
 \newpage
 \input{SoftwareSystemROS}
-\newpage
-\input{SoftwareSystemOCU}
 
 \end{document}
