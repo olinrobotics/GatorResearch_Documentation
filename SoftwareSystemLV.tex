@@ -699,6 +699,8 @@ The block diagram for the Maintain Mission Clock VI is shown in the figure below
 
 \subsubsection{Run ROS Network}
 
+The LabVIEW portion of the ROS network is based on ROS-LV toolkit developed Ryan Eggert and this team. Installation instructions and further details can be found at: \url{https://github.com/RyanEggert/ROS-LV-Toolkit}.\\ \\
+%
 The block diagram for the Run ROS Network VI is shown in the figure below:
 
 \begin{figure}[h!]
@@ -790,8 +792,6 @@ The next step is depth registration and the block diagram for that VI is shown b
 \end{figure}
 
 \noindent As can be seen in Figure \ref{fig:lidar2cam}, the process of depth registration is as follows: the VI takes the array of LiDAR points as input and iterates through each point. Each point is passed into a subVI that carries out a process known as perspective projection to locate the LiDAR point in cartesian coordinates into the location of the point in the image. As part of perspective projection, there are intrinsic parameters (parameters of the camera) as well as extrinsic parameters (parameters related to how the camera is positioned relative to the origin of the coordinate system the LiDAR points reference) that must be known to properly perform perspective projection. The output of perspective projection is the X and Y location of the point in the image in terms of pixels which is then appended to an output array.
-
-\newpage
 
 \subsubsection{Perspective Projection}
 The perspective projection subVI is then shown below:
@@ -945,7 +945,104 @@ The Shutdown state is simple: it simply triggers shutdown of the vehicle. The st
 
 As shown in Figure \ref{fig:pcmainblock_annotated}, after the state machine triggers shutdown, the code then executes the Shutdown Robot VI. The block diagram is shown below:
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Photos/ShutdownRobot_annotated.png}
+\caption{Block Diagram for the Shutdown Robot VI}
+\label{fig:shutdownrobot}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:shutdownrobot}, the Shutdown Robot VI contains the following parts:
+
+\begin{enumerate}
+\item Shutdown controllers: Set the drive commands to zero to stop the vehicle and disable the NI9505 drivers
+\item Remove Error: This set simply removes any errors that were raised by any other portion of code so that regardless of what has happened to the robot before, during shutdown, all shutdown procedures are performed
+\item Close FPGA: Shuts down and closes the FPGA
+\item Close VIs: Shuts down the VIs that were run in the Run VI VI (i.e. Maintain FPGA Communications VI, Maintain Mission Clock VI, Run ROS Network VI and Run Camera Processes VI)
+\item Close Cam: Shuts down and closes the front camera and associated image spaces
+\item Close IMU: Closes the IMU VISA port
+\item Close GPS: Closes the GPS VISA port
+\item Reset EStops: Resets all the global emergency stop variables to false to ensure that the vehicle will run again the next time the software is run
+\item Close ROS: Closes the ROS topics and disconnects from the ROS network
+\end{enumerate}
+
+\subsubsection{Shutdown Controllers}
+
+At the beginning of the Shutdwon Robot VI are the read/write controls that prepare the controllers for shutdown. Specifically, the first read/write control sets the desired wheel angle and velocity to zero so that the steering wheel is centered and the vehicle is commanded to stop moving. It also sets the brake boolean to True to activate the brakes. The second and third read/write controls set the left and right disable drive booleans to True to disable the NI9505 modules controlling the left and right tilt units. Doing so ensures that the tilt units are rendered safe and inoperable until they are re-enabled again during initialization.
+
+\subsubsection{Remove Error}
+
+The Remove Error section of the Shutdown Robot VI is a case statement that checks to see if a prior error was received on the error wire. If no error is received on the error wire, then no errors occurred prior to shutdown and so it simply passes that error wire through. However, if an error is received at the case statement, that error is displayed and then a fresh error constant with no error is passed on. This is done because the vehicle should cleanly shutdown all VIs and processes regardless of whether a prior process has triggered an error. However, if the error wire shows an error, shutdown processes might be skipped. So, to ensure all shutdown processes are performed regardlesss of prior errors, any prior errors are displayed and then removed from the error wire.
+
+\subsubsection{Close FPGA}
+
+This subVI closes and resets the Hindbrain FPGA VI and stops it from running.
+
+\subsubsection{Close VIs}
+
+The block diagram for the Close VIs subVI is shown below: 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.85]{Photos/closevis.png}
+\caption{Block Diagram for the Close VIs VI}
+\label{fig:closevis}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:closevis}, the VI essentially consists of 4 Close Reference blocks. Using the VI references created in the Run VIs VI, the VI references for the  Maintain FPGA Communications VI, Maintain Mission Clock VI, Run ROS Network VI and Run Camera Processes VI, the close reference blocks close these VIs ane reset them, similar to what the Clsoe FPGA block does.
+
+\newpage
+
+\subsubsection{Close Cam}
+
+The block diagram for the Close Cam subVI is shown below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.85]{Photos/closecams.png}
+\caption{Block Diagram for the Close Cams VI}
+\label{fig:closecams}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:closecams}, the VI essentially consists of two blocks: a Close Camera block and a IMAQ Dispose block. The close camera block closes the camera referenced by the session wire. The IMAQ Dispose, then, releases the memory space allocated to the Image Space memory space. 
+
+\subsubsection {Close IMU and Close GPS}
+
+In both the Close IMU and Close GPS sections of Figure \ref{fig:shutdownrobot}, the VISA serial ports for the IMU and GPS are both closed using the VISA close blocks.
+
+\subsubsection{Reset EStops}
+\label{sec:resetestops}
+
+At this section, the global stops for all layers of code including the FPGA, PCMain and ROS midbrains are all set to False so that the vehicle code will run properly next time it is run.
+
+\subsubsection{Close ROS}
+
+At the end of the shutdown robot VI, the ROS-related elements are shutdown including any remaining ROS topics. The vehicle then disconnects itself from the ROS master.
 
 \subsection{Reinitialize State Machine}
+
+Referring back to Figure \ref{fig:pcmainblock_annotated}, the reinitialize state machine section consists of 4 Invoke Method nodes that reinitializes the PCMain global estop, robot shutting down indicator light as well as the panel of initialization status lights in the initialize and debug front panels to their default values (i.e. false). These Invoke Method nodes basically reset the lights so that the next time the code is run, values from the last execution of the code are not retained. 
+
+
 \subsection{Reset Estops}
+
+The Reset EStops subVI does exactly the same thing as the reset estops section expalained in Section \ref{sec:resetestops}. The functionality is duplicated in this subVI because the team began migrating the estop resets to its own subVI and did not complete the migration. The reset estop functions from Section \ref{sec:resetestops} can be removed if desired without loss of functionality.
+
 \subsection{Emergency Stop Management}
+
+The last part of the block diagram for the PCMain VI shown in Figure \ref{fig:pcmainblock_annotated} is the Emergency Stop Management while loop shown at the bottom of the figure. For convenience, that while loop is shown in the figure below:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.85]{Photos/estopmanagement.png}
+\caption{While loop for EStop Management}
+\label{fig:estopmanagement}
+\end{figure}
+
+\noindent As can be seen in Figure \ref{fig:estopmanagement}, the while loop essentially contains a flat sequence with 3 steps:
+
+\begin{enumerate}
+\item Check the state of the Global EStop button that can be accessed by the operator regardless of what state the state machine is in. This step then copies the state of that estop button to the global variable GlobalStop PC [PC Main] that is read by all PC Main elements to determine whether shutdown has been requested.
+\item The state of all GlobalStop global variables for the PCMain, Midbrain, ROS and FPGA layers are then checked and if any of them are true, the GlobalStop is triggered
+\item The Robot Shutting Down local variable (set in the shutdown robot state of the state machine) is then used to stop this while loop along with the rest of the vehicle
+\end{enumerate}
